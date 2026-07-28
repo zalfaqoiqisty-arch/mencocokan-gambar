@@ -74,6 +74,11 @@
             cursor: pointer;
             box-shadow: 0 8px 20px rgba(16, 172, 132, 0.4);
             margin-top: 20px;
+            transition: transform 0.2s;
+        }
+
+        .main-play-btn:hover {
+            transform: scale(1.05);
         }
 
         /* 🎮 ARENA GAME */
@@ -148,6 +153,11 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.3);
             border: 2px solid rgba(255,255,255,0.1);
             position: relative;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
         }
 
         /* Cover belakang (sebelum diklik) */
@@ -159,8 +169,8 @@
 
         /* Tampilan saat kartu dibalik / diklik */
         .card img {
-            width: 80%;
-            height: 80%;
+            width: 75%;
+            height: 75%;
             object-fit: contain;
             display: none;
         }
@@ -201,7 +211,7 @@
 
     <!-- BERANDA -->
     <div id="home-screen">
-        <p style="color: #c8d6e5; margin-bottom: 10px;">Klik tombol di bawah ini untuk memulai game mencocokkan gambar!</p>
+        <p style="color: #c8d6e5; margin-bottom: 10px;">Temukan pasangan gambar yang cocok sebelum waktu habis!</p>
         <button class="main-play-btn" onclick="mulaiPermainan()">Mulai Permainan</button>
     </div>
 
@@ -210,7 +220,8 @@
         <div class="game-panel">
             <div style="text-align:center;">
                 <div class="char-avatar">🤠</div>
-                <span style="font-size: 11px; font-weight: bold;">ZALFA</span>
+                <!-- NAMA SUDAH DIGANTI MENJADI 'SAYA' -->
+                <span id="playerName" style="font-size: 11px; font-weight: bold; letter-spacing: 1px;">SAYA</span>
             </div>
 
             <div class="stats-center">
@@ -221,7 +232,7 @@
 
             <div style="text-align:center;">
                 <div class="char-avatar" style="border-color:#ff4757;">👾</div>
-                <span style="font-size: 11px; font-weight: bold; color:#ff4757;">MUSUH</span>
+                <span style="font-size: 11px; font-weight: bold; color:#ff4757; letter-spacing: 1px;">MUSUH</span>
             </div>
         </div>
 
@@ -229,20 +240,19 @@
     </div>
 
     <script>
-        // URL GAMBAR ONLINE PASTI BISA DIBUKA
+        // URL Gambar Online (Pasti Muncul)
         const onlineImages = [
-            'https://cdn-icons-png.flaticon.com/512/742/742751.png', // Senyum
-            'https://cdn-icons-png.flaticon.com/512/3081/3081840.png', // Kopi
-            'https://cdn-icons-png.flaticon.com/512/616/616408.png', // Kucing
-            'https://cdn-icons-png.flaticon.com/512/414/414004.png', // Bintang
-            'https://cdn-icons-png.flaticon.com/512/2909/2909762.png', // Pizza
-            'https://cdn-icons-png.flaticon.com/512/1046/1046784.png', // Es Krim
-            'https://cdn-icons-png.flaticon.com/512/2972/2972531.png', // Bola
-            'https://cdn-icons-png.flaticon.com/512/869/869869.png',  // Matahari
-            'https://cdn-icons-png.flaticon.com/512/3135/3135715.png'  // Mahkota
+            'https://cdn-icons-png.flaticon.com/512/742/742751.png',
+            'https://cdn-icons-png.flaticon.com/512/3081/3081840.png',
+            'https://cdn-icons-png.flaticon.com/512/616/616408.png',
+            'https://cdn-icons-png.flaticon.com/512/414/414004.png',
+            'https://cdn-icons-png.flaticon.com/512/2909/2909762.png',
+            'https://cdn-icons-png.flaticon.com/512/1046/1046784.png',
+            'https://cdn-icons-png.flaticon.com/512/2972/2972531.png',
+            'https://cdn-icons-png.flaticon.com/512/869/869869.png'
         ];
 
-        const enemyImageUrl = 'https://cdn-icons-png.flaticon.com/512/1216/1216597.png'; // Gambar Musuh
+        const enemyImageUrl = 'https://cdn-icons-png.flaticon.com/512/1216/1216597.png';
 
         let currentLevel = 1;
         let score = 0;
@@ -294,10 +304,8 @@
                 deck.push({ type: 'enemy', url: enemyImageUrl, id: 'enemy' });
             }
 
-            // Acak kartu
             deck.sort(() => Math.random() - 0.5);
 
-            // Tampilkan kartu
             deck.forEach(item => {
                 const card = document.createElement('div');
                 card.classList.add('card');
@@ -313,7 +321,6 @@
                 board.appendChild(card);
             });
 
-            // Jalankan Timer 60 Detik
             timerInterval = setInterval(() => {
                 timeLeft--;
                 document.getElementById('timer').innerText = timeLeft;
@@ -335,7 +342,7 @@
                 document.getElementById('score').innerText = score;
                 canClick = false;
                 setTimeout(() => {
-                    alert('👾 KENA MUSUH! Skor -10');
+                    alert('👾 JEBAKAN MUSUH! Skor Anda berkurang -10');
                     card.classList.remove('flipped');
                     canClick = true;
                 }, 400);
@@ -362,11 +369,11 @@
                         clearInterval(timerInterval);
                         setTimeout(() => {
                             if (currentLevel < 3) {
-                                alert(`🎉 LEVEL SELESAI! Lanjut Level ${currentLevel + 1}`);
+                                alert(`🎉 LEVEL SELESAI!\nSkor: ${score}\nLanjut ke Level ${currentLevel + 1}`);
                                 currentLevel++;
                                 startLevel(currentLevel);
                             } else {
-                                alert(`🏆 MENANG! Total Skor Akhir: ${score}`);
+                                alert(`🏆 SELAMAT! ANDA MENANG!\nSkor Akhir: ${score}`);
                                 location.reload();
                             }
                         }, 300);
