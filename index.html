@@ -274,9 +274,41 @@
     </div>
 
     <script>
-        // 🔊 SYSTEM SOUND EFFECT (Web Audio API - Otomatis Tanpa File Eksternal)
+        // 🔊 SYSTEM SOUND EFFECT & BGM (Web Audio API)
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        let isBgmPlaying = false;
 
+        // 🎵 MUSIK BACKGROUND (BGM Chiptune Loop)
+        function startBGM() {
+            if (isBgmPlaying) return;
+            isBgmPlaying = true;
+
+            const notes = [261.63, 329.63, 392.00, 523.25, 392.00, 329.63]; // Melodi ceria
+            let noteIndex = 0;
+
+            setInterval(() => {
+                if (!isBgmPlaying || audioCtx.state === 'suspended') return;
+                
+                const osc = audioCtx.createOscillator();
+                const noteGain = audioCtx.createGain();
+                
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(notes[noteIndex], audioCtx.currentTime);
+                
+                noteGain.gain.setValueAtTime(0.04, audioCtx.currentTime); // Volume lembut
+                noteGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.25);
+                
+                osc.connect(noteGain);
+                noteGain.connect(audioCtx.destination);
+                
+                osc.start(audioCtx.currentTime);
+                osc.stop(audioCtx.currentTime + 0.25);
+
+                noteIndex = (noteIndex + 1) % notes.length;
+            }, 300);
+        }
+
+        // 🔔 EFEK SUARA GAME (Flip, Match, Wrong, Win, Lose)
         function playSound(type) {
             if (audioCtx.state === 'suspended') {
                 audioCtx.resume();
@@ -364,6 +396,7 @@
 
         function mulaiPermainan() {
             playSound('flip');
+            startBGM(); // Memulai musik latar
             document.getElementById('home-screen').style.display = 'none';
             document.getElementById('game-screen').style.display = 'flex';
             currentLevel = 1;
