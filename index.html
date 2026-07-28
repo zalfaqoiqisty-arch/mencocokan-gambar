@@ -30,13 +30,13 @@
             overflow-x: hidden;
         }
 
-        /* 📌 HEADER LOGO BERDERET (LOGOGAME DI TENGAH-TENGAH) */
+        /* 📌 HEADER LOGO BERDERET (LOGOGAME & TEKS DI TENGAH) */
         .brand-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
             background: rgba(255, 255, 255, 0.05);
-            padding: 10px 20px;
+            padding: 12px 20px;
             border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.12);
             margin-bottom: 20px;
@@ -57,18 +57,36 @@
             border-radius: 8px;
         }
 
-        /* LOGO GAME DI TENGAH HEADER */
+        /* LOGO GAME + TULISAN DI TENGAH HEADER */
         .center-logo {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 10px;
         }
 
         .center-logo img {
-            height: 65px;
+            height: 50px;
             width: auto;
             object-fit: contain;
             filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+            margin-bottom: 4px;
+        }
+
+        .brand-title h1 {
+            font-size: 13px;
+            color: #00d2d3;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        .brand-title p {
+            font-size: 10px;
+            color: #8395a7;
+            margin-top: 2px;
         }
 
         /* 🏠 HALAMAN UTAMA */
@@ -213,16 +231,20 @@
 </head>
 <body>
 
-    <!-- BRANDING HEADER: LOGO KIRI (SMK & UZ) | LOGO TENGAH (LOGOGAME) | LOGO KANAN (MOKO & JURUSAN) -->
+    <!-- BRANDING HEADER: LOGO KIRI (SMK & UZ) | LOGO & TULISAN TENGAH | LOGO KANAN (MOKO & JURUSAN) -->
     <div class="brand-header">
         <div class="header-logos-left">
             <img src="logoSmk.jpeg" alt="Logo SMK">
             <img src="hkihhcgfk.jpeg" alt="Logo UZ" onerror="this.onerror=null; this.src='hkihhcgfk.png';">
         </div>
         
-        <!-- LOGO GAME DI TENGAH -->
+        <!-- LOGO GAME + TULISAN DI TENGAH HEADER -->
         <div class="center-logo">
             <img src="logogame.png" alt="Match Picture Logo">
+            <div class="brand-title">
+                <h1>GAME MENCOCOKKAN GAMBAR</h1>
+                <p>Aesthetic Matching</p>
+            </div>
         </div>
 
         <div class="header-logos-right">
@@ -252,7 +274,7 @@
     </div>
 
     <script>
-        // 🔊 SYSTEM SOUND EFFECT (Web Audio API)
+        // 🔊 SYSTEM SOUND EFFECT (Web Audio API - Otomatis Tanpa File Eksternal)
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
         function playSound(type) {
