@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- 📌 JUDUL UNTUK BROWSER & PREVIEW LINK WHATSAPP -->
     <title>GAME MENCOCOKKAN GAMBAR - Matching Project</title>
+    <meta property="og:title" content="GAME MENCOCOKKAN GAMBAR - Matching Project">
+    <meta property="og:description" content="Aesthetic Matching Project">
+    <meta property="og:type" content="website">
+
     <style>
         * {
             box-sizing: border-box;
@@ -24,7 +30,7 @@
             overflow-x: hidden;
         }
 
-        /* 📌 HEADER MELEBAR KE POJOK KIRI DAN KANAN LAYAR */
+        /* 📌 HEADER MELEBAR KE POJOK KIRI DAN KANAN */
         .brand-header {
             display: flex;
             align-items: center;
@@ -35,7 +41,7 @@
             border: 1px solid rgba(255, 255, 255, 0.12);
             margin-bottom: 20px;
             width: 100%;
-            max-width: 900px; /* Melebar ke pojok */
+            max-width: 900px;
         }
 
         .brand-header img {
@@ -118,7 +124,6 @@
             margin-bottom: 20px;
         }
 
-        /* KANTONG GAMBAR KARAKTER (SAYA & MUSUH) */
         .char-box {
             display: flex;
             flex-direction: column;
@@ -257,18 +262,17 @@
                 <span id="playerName" style="font-size: 11px; font-weight: bold; letter-spacing: 1px;">SAYA</span>
             </div>
 
-            <!-- STATUS TENGAN -->
+            <!-- STATUS TENGAH -->
             <div class="stats-center">
                 <div id="levelText" style="color:#00d2d3; font-weight:bold; font-size:13px;">LEVEL 1</div>
                 <div class="stat-badge">⏱️ Waktu: <span id="timer">70</span>s</div>
                 <div class="stat-badge">🏆 Skor: <span id="score">0</span></div>
             </div>
 
-            <!-- KARAKTER MUSUH & PROGRESS KETERANGAN MUSUH -->
+            <!-- KARAKTER MUSUH & PROGRESS MUSUH -->
             <div class="char-box">
                 <div class="char-avatar" style="border-color:#ff4757;">👾</div>
                 <span style="font-size: 11px; font-weight: bold; color:#ff4757; letter-spacing: 1px;">MUSUH</span>
-                <!-- KETERANGAN PROGRESS MUSUH -->
                 <span id="enemyProgress" style="font-size: 10px; color: #ff6b6b; font-weight: bold;">Status: 0%</span>
             </div>
         </div>
@@ -292,7 +296,7 @@
 
         let currentLevel = 1;
         let score = 0;
-        let timeLeft = 70; // ⏱️ Waktu diubah jadi 70 Detik
+        let timeLeft = 70; // ⏱️ Waktu 70 Detik
         let timerInterval = null;
         let enemyInterval = null;
         let enemyProgressPercent = 0;
@@ -326,7 +330,7 @@
             enemyProgressPercent = 0;
 
             const config = levelConfig[level];
-            timeLeft = 70; // Reset ke 70 Detik setiap level
+            timeLeft = 70;
             document.getElementById('timer').innerText = timeLeft;
             document.getElementById('levelText').innerText = config.name;
             document.getElementById('enemyProgress').innerText = `Status: 0%`;
@@ -362,7 +366,7 @@
                 board.appendChild(card);
             });
 
-            // Timer Utama (70 Detik)
+            // Timer Utama 70 Detik
             timerInterval = setInterval(() => {
                 timeLeft--;
                 document.getElementById('timer').innerText = timeLeft;
@@ -374,7 +378,7 @@
                 }
             }, 1000);
 
-            // Pergerakan Progress Musuh (Otomatis Bertambah Seiring Waktu)
+            // Progress Musuh
             if (config.hasEnemy) {
                 enemyInterval = setInterval(() => {
                     enemyProgressPercent += 2;
