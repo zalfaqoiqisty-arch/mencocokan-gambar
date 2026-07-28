@@ -427,7 +427,7 @@
     </div>
 
     <script>
-        // 📌 PENGATURAN DATA GAMBAR (Sangat mudah diganti / ditambah asset gambarnya di sini)
+        // 📌 PENGATURAN DATA GAMBAR
         const assetPool = [
             "gambar1.jpeg", "gambar2.jpeg", "gambar3.jpeg", "gambar4.jpeg",
             "gambar5.jpeg", "gambar6.jpeg", "gambar7.jpeg", "gambar8.jpeg",
@@ -495,9 +495,9 @@
                 osc.stop(now + 0.1);
             } else if (type === 'match') {
                 osc.type = 'triangle';
-                osc.frequency.setValueAtTime(523.25, now); // C5
-                osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
-                osc.frequency.setValueAtTime(783.99, now + 0.16); // G5
+                osc.frequency.setValueAtTime(523.25, now);
+                osc.frequency.setValueAtTime(659.25, now + 0.08);
+                osc.frequency.setValueAtTime(783.99, now + 0.16);
                 gain.gain.setValueAtTime(0.2 * sfxVolumeGain, now);
                 gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
                 osc.start(now);
@@ -561,7 +561,6 @@
             }, 300);
         }
 
-        // 🚀 ALUR PERMAINAN
         function mulaiPermainan() {
             document.getElementById('home-screen').style.display = 'none';
             document.getElementById('game-screen').style.display = 'flex';
@@ -577,7 +576,6 @@
 
             document.getElementById('levelText').innerText = `LEVEL ${level}`;
             
-            // Konfigurasi waktu dan jumlah pasangan tiap level
             let pairsCount = 3;
             if (level === 1) { pairsCount = 3; timeLeft = 70; }
             else if (level === 2) { pairsCount = 6; timeLeft = 60; }
@@ -588,7 +586,6 @@
             totalPairsNeeded = pairsCount;
             document.getElementById('timer').innerText = timeLeft;
 
-            // Ambil gambar dari assetPool sejumlah pairsCount
             let selectedAssets = assetPool.slice(0, pairsCount);
             let deck = [...selectedAssets, ...selectedAssets];
             deck.sort(() => Math.random() - 0.5);
@@ -597,7 +594,7 @@
             board.className = `board level-${level}`;
             board.innerHTML = '';
 
-            deck.forEach((imgSrc, index) => {
+            deck.forEach((imgSrc) => {
                 const card = document.createElement('div');
                 card.className = 'card';
                 card.dataset.image = imgSrc;
@@ -689,6 +686,3 @@
     </script>
 </body>
 </html>
-```eof
-
-Your slide deck on **Match Picture Game Project** is ready! Feel free to take a look and let me know if you'd like to make any edits.
