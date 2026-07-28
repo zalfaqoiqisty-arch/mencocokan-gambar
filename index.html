@@ -202,9 +202,10 @@
         }
 
         .card img {
-            width: 80%;
-            height: 80%;
-            object-fit: contain;
+            width: 85%;
+            height: 85%;
+            object-fit: cover;
+            border-radius: 6px;
             display: none;
         }
 
@@ -227,16 +228,7 @@
             cursor: default;
         }
 
-        /* 📱 OPTIMALISASI KHUSUS HP (PORTRAIT & LANDSCAPE) */
-        @media screen and (max-width: 768px) {
-            .board.level-1 { grid-template-columns: repeat(3, minmax(45px, 65px)); }
-            .board.level-2 { grid-template-columns: repeat(4, minmax(42px, 58px)); }
-            .board.level-3 { grid-template-columns: repeat(4, minmax(40px, 55px)); }
-            .board.level-4 { grid-template-columns: repeat(5, minmax(38px, 50px)); }
-            .board.level-5 { grid-template-columns: repeat(6, minmax(35px, 45px)); }
-        }
-
-        /* 📱 JIKA LAYAR BENAR-BENAR DALAM MODE LANDSCAPE (HORIZONTAL) */
+        /* 📱 JIKA LAYAR DALAM MODE LANDSCAPE (HORIZONTAL) */
         @media (max-height: 500px) and (orientation: landscape) {
             body {
                 padding: 4px 8px 55px 8px;
@@ -275,7 +267,6 @@
                 margin-bottom: 4px;
             }
             
-            /* Kartu otomatis menyesuaikan agar muat ke samping di HP */
             .board.level-1 { grid-template-columns: repeat(6, minmax(34px, 44px)); gap: 5px; }
             .board.level-2 { grid-template-columns: repeat(6, minmax(34px, 44px)); gap: 5px; }
             .board.level-3 { grid-template-columns: repeat(8, minmax(32px, 42px)); gap: 4px; }
@@ -337,10 +328,6 @@
             cursor: pointer;
             box-shadow: 0 4px 12px rgba(0, 210, 211, 0.4);
             transition: transform 0.2s;
-        }
-
-        .modal-btn:hover {
-            transform: scale(1.05);
         }
 
         /* 🎛️ PANEL PENGATURAN AUDIO */
@@ -458,7 +445,7 @@
         </div>
     </div>
 
-    <!-- 🎛️ PANEL PENGATURAN EFEK SUARA -->
+    <!-- 🎛️ PANEL PENGATURAN AUDIO -->
     <div class="audio-settings-bar">
         <div class="audio-control-group">
             <label for="sfxVolume">🔔 SFX:</label>
@@ -476,12 +463,23 @@
     </div>
 
     <script>
-        // 📌 PENGATURAN DATA GAMBAR
+        // 📌 MENGGUNAKAN SUMBER GAMBAR ONLINE STABIL AGAR DI HP PASTI MUNCUL
         const assetPool = [
-            "gambar1.jpeg", "gambar2.jpeg", "gambar3.jpeg", "gambar4.jpeg",
-            "gambar5.jpeg", "gambar6.jpeg", "gambar7.jpeg", "gambar8.jpeg",
-            "gambar9.jpeg", "gambar10.jpeg", "gambar11.jpeg", "gambar12.jpeg",
-            "gambar13.jpeg", "gambar14.jpeg", "gambar15.jpeg"
+            "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&auto=format&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=200&auto=format&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=200&auto=format&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=200&auto=format&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?w=200&auto=format&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&auto=format&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&auto=format&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&auto=format&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&auto=format&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&auto=format&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&auto=format&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=200&auto=format&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&auto=format&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1517530811442-70196234f9a4?w=200&auto=format&fit=crop&q=80"
         ];
 
         // 🎮 STATE GAME
@@ -611,7 +609,6 @@
         }
 
         function mulaiPermainan() {
-            // Memaksa browser masuk ke mode fullscreen agar orientasi landscape di HP lebih stabil
             let elem = document.documentElement;
             if (elem.requestFullscreen) {
                 elem.requestFullscreen().catch(err => console.log(err));
@@ -619,9 +616,8 @@
                 elem.webkitRequestFullscreen();
             }
 
-            // Jika perangkat mendukung Screen Orientation API untuk mengunci landscape
             if (screen.orientation && screen.orientation.lock) {
-                screen.orientation.lock('landscape').catch(err => console.log("Orientation lock not allowed: ", err));
+                screen.orientation.lock('landscape').catch(err => console.log(err));
             }
 
             document.getElementById('home-screen').style.display = 'none';
@@ -664,10 +660,7 @@
                 const img = document.createElement('img');
                 img.src = imgSrc;
                 img.alt = "Card Image";
-                img.onerror = function() {
-                    this.src = `https://placehold.co/100x100/1e293b/00d2d3?text=IMG`;
-                };
-
+                
                 card.appendChild(img);
                 card.addEventListener('click', () => flipCard(card));
                 board.appendChild(card);
