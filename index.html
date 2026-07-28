@@ -51,6 +51,7 @@
             gap: 6px;
         }
 
+        /* Desain Kotak Logo */
         .header-logos-left img, .header-logos-right img {
             width: 36px;
             height: 36px;
@@ -59,6 +60,7 @@
             background: rgba(255,255,255,0.08);
             padding: 2px;
             border: 1px solid rgba(255,255,255,0.15);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .center-logo {
@@ -398,12 +400,14 @@
     <!-- BRANDING HEADER: LOGO KIRI (LOGO SMK & LOGO UZ) -->
     <div class="brand-header">
         <div class="header-logos-left">
-            <img src="logoSmk.jpeg" alt="Logo SMK" onerror="this.onerror=null; this.src='https://placehold.co/45x45/1e293b/00d2d3?text=SMK';">
-            <img src="hkihhcgfk.jpeg" alt="hkihhcgfk" onerror="this.onerror=null; this.src='https://placehold.co/45x45/1e293b/00d2d3?text=UZ';">
+            <!-- Menghapus fallback text, memaksa gambar tampil -->
+            <img src="logoSmk.jpeg" alt="Logo SMK">
+            <img src="hkihhcgfk.jpeg" alt="Logo UZ">
         </div>
         
         <div class="center-logo">
-            <img src="logogame.png" alt="Match Picture Logo" onerror="this.onerror=null; this.src='https://placehold.co/100x50/1e293b/00d2d3?text=GAME';">
+            <!-- Menghapus fallback text, memaksa gambar tampil -->
+            <img src="logogame.png" alt="Match Picture Logo">
             <div class="brand-title">
                 <h1>GAME MENCOCOKKAN GAMBAR</h1>
                 <p>Aesthetic Matching</p>
@@ -411,15 +415,16 @@
         </div>
 
         <div class="header-logos-right">
-            <img src="ppm.jpeg" alt="Logo MOKO" onerror="this.onerror=null; this.src='https://placehold.co/45x45/1e293b/00d2d3?text=PPM';">
-            <img src="logojurusan.jpeg" alt="Logo Jurusan" onerror="this.onerror=null; this.src='https://placehold.co/45x45/1e293b/00d2d3?text=JR';">
-            <img src="logo67.jpeg" alt="Logo Onesandvoscho" onerror="this.onerror=null; this.src='https://placehold.co/45x45/1e293b/00d2d3?text=67';">
+            <!-- Menghapus fallback text, memaksa gambar tampil -->
+            <img src="ppm.jpeg" alt="Logo MOKO">
+            <img src="logojurusan.jpeg" alt="Logo Jurusan">
+            <img src="logo67.jpeg" alt="Logo Onesandvoscho">
         </div>
     </div>
 
     <!-- BERANDA -->
     <div id="home-screen">
-        <img src="logogame.png" alt="Match Picture Logo" class="home-main-logo" onerror="this.onerror=null; this.src='https://placehold.co/150x150/1e293b/00d2d3?text=MATCH';">
+        <img src="logogame.png" alt="Match Picture Logo" class="home-main-logo">
         <p style="color: #c8d6e5; font-size: 12px; margin-bottom: 6px;">Temukan pasangan gambar yang cocok sebelum waktu habis!</p>
         <button class="main-play-btn" onclick="mulaiPermainan()">Mulai Permainan</button>
     </div>
