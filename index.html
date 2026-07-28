@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- 📌 JUDUL UNTUK BROWSER & PREVIEW LINK -->
-    <title>GAME MENCOCOKKAN GAMBAR - Matching Project</title>
-    <meta property="og:title" content="GAME MENCOCOKKAN GAMBAR - Matching Project">
+    <title>MATCH PICTURE - GAME MENCOCOKKAN GAMBAR</title>
+    <meta property="og:title" content="MATCH PICTURE - GAME MENCOCOKKAN GAMBAR">
     <meta property="og:description" content="Aesthetic Matching Project">
     <meta property="og:type" content="website">
 
@@ -30,13 +30,13 @@
             overflow-x: hidden;
         }
 
-        /* 📌 HEADER 4 LOGO BERDERET SESUAI KEBUTUHAN */
+        /* 📌 HEADER LOGO BERDERET (LOGOGAME DI TENGAH-TENGAH) */
         .brand-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
             background: rgba(255, 255, 255, 0.05);
-            padding: 12px 20px;
+            padding: 10px 20px;
             border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.12);
             margin-bottom: 20px;
@@ -50,29 +50,25 @@
             gap: 10px;
         }
 
-        .brand-header img {
+        .header-logos-left img, .header-logos-right img {
             width: 45px;
             height: 45px;
             object-fit: contain;
             border-radius: 8px;
         }
 
-        .brand-title {
-            text-align: center;
-            flex-grow: 1;
-            padding: 0 10px;
+        /* LOGO GAME DI TENGAH HEADER */
+        .center-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .brand-title h1 {
-            font-size: 16px;
-            color: #00d2d3;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .brand-title p {
-            font-size: 11px;
-            color: #8395a7;
+        .center-logo img {
+            height: 65px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
         }
 
         /* 🏠 HALAMAN UTAMA */
@@ -88,6 +84,13 @@
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             margin-top: 10px;
+        }
+
+        .home-main-logo {
+            width: 180px;
+            height: auto;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 8px 15px rgba(0,0,0,0.5));
         }
 
         .main-play-btn {
@@ -121,7 +124,7 @@
         .game-panel {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: space-around;
             width: 100%;
             background: rgba(255, 255, 255, 0.07);
             padding: 15px 25px;
@@ -130,43 +133,17 @@
             margin-bottom: 20px;
         }
 
-        .char-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .char-avatar {
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            background: #222f3e;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 2px solid #00d2d3;
-            overflow: hidden;
-        }
-
-        .char-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
         .stats-center {
             display: flex;
-            flex-direction: column;
+            gap: 20px;
             align-items: center;
-            gap: 6px;
         }
 
         .stat-badge {
             background: rgba(0, 0, 0, 0.4);
-            padding: 5px 14px;
+            padding: 6px 16px;
             border-radius: 15px;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: bold;
         }
 
@@ -181,7 +158,7 @@
 
         .board.level-1 { grid-template-columns: repeat(3, 85px); }
         .board.level-2 { grid-template-columns: repeat(4, 75px); }
-        .board.level-3 { grid-template-columns: repeat(6, 60px); }
+        .board.level-3 { grid-template-columns: repeat(4, 70px); }
 
         .card {
             height: 80px;
@@ -232,24 +209,20 @@
             opacity: 0.6;
             cursor: default;
         }
-
-        .card.enemy.flipped {
-            background: #ff4757 !important;
-        }
     </style>
 </head>
 <body>
 
-    <!-- BRANDING HEADER: LOGO SMK & UZ DI KIRI | LOGO MOKO & JURUSAN DI KANAN -->
+    <!-- BRANDING HEADER: LOGO KIRI (SMK & UZ) | LOGO TENGAH (LOGOGAME) | LOGO KANAN (MOKO & JURUSAN) -->
     <div class="brand-header">
         <div class="header-logos-left">
             <img src="logoSmk.jpeg" alt="Logo SMK">
             <img src="hkihhcgfk.jpeg" alt="Logo UZ" onerror="this.onerror=null; this.src='hkihhcgfk.png';">
         </div>
         
-        <div class="brand-title">
-            <h1>GAME MENCOCOKKAN GAMBAR</h1>
-            <p>Aesthetic Matching Project</p>
+        <!-- LOGO GAME DI TENGAH -->
+        <div class="center-logo">
+            <img src="logogame.png" alt="Match Picture Logo">
         </div>
 
         <div class="header-logos-right">
@@ -260,6 +233,7 @@
 
     <!-- BERANDA -->
     <div id="home-screen">
+        <img src="logogame.png" alt="Match Picture Logo" class="home-main-logo">
         <p style="color: #c8d6e5; font-size: 14px; margin-bottom: 10px;">Temukan pasangan gambar yang cocok sebelum waktu habis!</p>
         <button class="main-play-btn" onclick="mulaiPermainan()">Mulai Permainan</button>
     </div>
@@ -267,28 +241,10 @@
     <!-- ARENA GAME -->
     <div id="game-screen">
         <div class="game-panel">
-            <!-- KARAKTER SAYA -->
-            <div class="char-box">
-                <div class="char-avatar">
-                    <img src="https://cdn-icons-png.flaticon.com/512/742/742751.png" alt="Pemain">
-                </div>
-                <span id="playerName" style="font-size: 11px; font-weight: bold; letter-spacing: 1px;">SAYA</span>
-            </div>
-
-            <!-- STATUS TENGAH -->
+            <div id="levelText" style="color:#00d2d3; font-weight:bold; font-size:15px;">LEVEL 1</div>
             <div class="stats-center">
-                <div id="levelText" style="color:#00d2d3; font-weight:bold; font-size:13px;">LEVEL 1</div>
                 <div class="stat-badge">⏱️ Waktu: <span id="timer">70</span>s</div>
                 <div class="stat-badge">🏆 Skor: <span id="score">0</span></div>
-            </div>
-
-            <!-- KARAKTER MUSUH -->
-            <div class="char-box">
-                <div class="char-avatar" style="border-color:#ff4757;">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1216/1216597.png" alt="Musuh">
-                </div>
-                <span style="font-size: 11px; font-weight: bold; color:#ff4757; letter-spacing: 1px;">MUSUH</span>
-                <span id="enemyProgress" style="font-size: 10px; color: #ff6b6b; font-weight: bold;">Status: 0%</span>
             </div>
         </div>
 
@@ -296,6 +252,7 @@
     </div>
 
     <script>
+        // 🔊 SYSTEM SOUND EFFECT (Web Audio API)
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
         function playSound(type) {
@@ -329,9 +286,9 @@
                 osc.stop(now + 0.35);
             } else if (type === 'wrong') {
                 osc.type = 'sawtooth';
-                osc.frequency.setValueAtTime(200, now);
-                osc.frequency.setValueAtTime(120, now + 0.15);
-                gain.gain.setValueAtTime(0.3, now);
+                osc.frequency.setValueAtTime(220, now);
+                osc.frequency.setValueAtTime(140, now + 0.15);
+                gain.gain.setValueAtTime(0.25, now);
                 gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
                 osc.start(now);
                 osc.stop(now + 0.3);
@@ -369,22 +326,18 @@
             'https://cdn-icons-png.flaticon.com/512/869/869869.png'
         ];
 
-        const enemyImageUrl = 'https://cdn-icons-png.flaticon.com/512/1216/1216597.png';
-
         let currentLevel = 1;
         let score = 0;
         let timeLeft = 70;
         let timerInterval = null;
-        let enemyInterval = null;
-        let enemyProgressPercent = 0;
         let flippedCards = [];
         let matchedCount = 0;
         let canClick = true;
 
         const levelConfig = {
-            1: { pairs: 3, hasEnemy: false, gridClass: 'level-1', name: 'LEVEL 1' },
-            2: { pairs: 4, hasEnemy: true,  gridClass: 'level-2', name: 'LEVEL 2: AWAS MUSUH! 👾' },
-            3: { pairs: 8, hasEnemy: true,  gridClass: 'level-3', name: 'LEVEL 3: MASTER' }
+            1: { pairs: 3, gridClass: 'level-1', name: 'LEVEL 1' },
+            2: { pairs: 4, gridClass: 'level-2', name: 'LEVEL 2' },
+            3: { pairs: 6, gridClass: 'level-3', name: 'LEVEL 3: MASTER' }
         };
 
         function mulaiPermainan() {
@@ -399,19 +352,16 @@
 
         function startLevel(level) {
             clearInterval(timerInterval);
-            clearInterval(enemyInterval);
             const board = document.getElementById('board');
             board.innerHTML = '';
             flippedCards = [];
             matchedCount = 0;
             canClick = true;
-            enemyProgressPercent = 0;
 
             const config = levelConfig[level];
             timeLeft = 70;
             document.getElementById('timer').innerText = timeLeft;
             document.getElementById('levelText').innerText = config.name;
-            document.getElementById('enemyProgress').innerText = `Status: 0%`;
             board.className = `board ${config.gridClass}`;
 
             let deck = [];
@@ -422,19 +372,12 @@
                 deck.push({ type: 'img', url: imgUrl, id: idx });
             });
 
-            if (config.hasEnemy) {
-                deck.push({ type: 'enemy', url: enemyImageUrl, id: 'enemy' });
-                deck.push({ type: 'enemy', url: enemyImageUrl, id: 'enemy' });
-            }
-
             deck.sort(() => Math.random() - 0.5);
 
             deck.forEach(item => {
                 const card = document.createElement('div');
                 card.classList.add('card');
-                if(item.type === 'enemy') card.classList.add('enemy');
                 card.dataset.id = item.id;
-                card.dataset.type = item.type;
 
                 const img = document.createElement('img');
                 img.src = item.url;
@@ -449,49 +392,18 @@
                 document.getElementById('timer').innerText = timeLeft;
                 if (timeLeft <= 0) {
                     clearInterval(timerInterval);
-                    clearInterval(enemyInterval);
                     playSound('lose');
                     alert('⏳ Waktu Habis! Mengulang level...');
                     startLevel(currentLevel);
                 }
             }, 1000);
-
-            if (config.hasEnemy) {
-                enemyInterval = setInterval(() => {
-                    enemyProgressPercent += 2;
-                    if (enemyProgressPercent > 100) enemyProgressPercent = 100;
-                    document.getElementById('enemyProgress').innerText = `Progress: ${enemyProgressPercent}%`;
-
-                    if (enemyProgressPercent >= 100) {
-                        clearInterval(timerInterval);
-                        clearInterval(enemyInterval);
-                        playSound('lose');
-                        alert('👾 Musuh telah menyelesaikan papan terlebih dahulu! Kamu Kalah!');
-                        startLevel(currentLevel);
-                    }
-                }, 1000);
-            }
         }
 
         function flipCard(card) {
             if (!canClick || card.classList.contains('flipped') || card.classList.contains('matched')) return;
 
-            card.classList.add('flipped');
-
-            if (card.dataset.type === 'enemy') {
-                playSound('wrong');
-                score = Math.max(0, score - 10);
-                document.getElementById('score').innerText = score;
-                canClick = false;
-                setTimeout(() => {
-                    alert('👾 JEBAKAN MUSUH! Skor Anda berkurang -10');
-                    card.classList.remove('flipped');
-                    canClick = true;
-                }, 400);
-                return;
-            }
-
             playSound('flip');
+            card.classList.add('flipped');
             flippedCards.push(card);
 
             if (flippedCards.length === 2) {
@@ -511,7 +423,6 @@
                     const totalImages = levelConfig[currentLevel].pairs * 2;
                     if (matchedCount === totalImages) {
                         clearInterval(timerInterval);
-                        clearInterval(enemyInterval);
                         playSound('win');
                         setTimeout(() => {
                             if (currentLevel < 3) {
@@ -519,7 +430,7 @@
                                 currentLevel++;
                                 startLevel(currentLevel);
                             } else {
-                                alert(`🏆 SELAMAT! ANDA MENANG!\nSkor Akhir: ${score}`);
+                                alert(`🏆 SELAMAT! ANDA MENANG SEMUA LEVEL!\nSkor Akhir: ${score}`);
                                 location.reload();
                             }
                         }, 300);
@@ -531,7 +442,7 @@
                         card2.classList.remove('flipped');
                         flippedCards = [];
                         canClick = true;
-                    }, 700);
+                    }, 600);
                 }
             }
         }
