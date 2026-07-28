@@ -281,6 +281,74 @@
     </div>
 
     <script>
+        // 🔊 AUDIO GENERATOR (Pake Web Audio API agar tanpa file mp3 luar)
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playSound(type) {
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            const now = audioCtx.currentTime;
+
+            if (type === 'flip') {
+                // Suara Klik/Flip Kartu
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(400, now);
+                osc.frequency.exponentialRampToValueAtTime(800, now + 0.08);
+                gain.gain.setValueAtTime(0.2, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.08);
+                osc.start(now);
+                osc.stop(now + 0.08);
+            } else if (type === 'match') {
+                // Suara Kartu Cocok
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(523.25, now); // C5
+                osc.frequency.setValueAtTime(659.25, now + 0.1); // E5
+                osc.frequency.setValueAtTime(783.99, now + 0.2); // G5
+                gain.gain.setValueAtTime(0.3, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
+                osc.start(now);
+                osc.stop(now + 0.35);
+            } else if (type === 'wrong') {
+                // Suara Kartu Salah / Musuh
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(200, now);
+                osc.frequency.setValueAtTime(120, now + 0.15);
+                gain.gain.setValueAtTime(0.3, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+                osc.start(now);
+                osc.stop(now + 0.3);
+            } else if (type === 'win') {
+                // Suara Menang
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(523.25, now);
+                osc.frequency.setValueAtTime(659.25, now + 0.15);
+                osc.frequency.setValueAtTime(783.99, now + 0.30);
+                osc.frequency.setValueAtTime(1046.50, now + 0.45);
+                gain.gain.setValueAtTime(0.3, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.7);
+                osc.start(now);
+                osc.stop(now + 0.7);
+            } else if (type === 'lose') {
+                // Suara Kalah
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(300, now);
+                osc.frequency.setValueAtTime(250, now + 0.2);
+                osc.frequency.setValueAtTime(200, now + 0.4);
+                osc.frequency.setValueAtTime(150, now + 0.6);
+                gain.gain.setValueAtTime(0.3, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.8);
+                osc.start(now);
+                osc.stop(now + 0.8);
+            }
+        }
+
         const onlineImages = [
             'https://cdn-icons-png.flaticon.com/512/742/742751.png',
             'https://cdn-icons-png.flaticon.com/512/3081/3081840.png',
@@ -296,7 +364,7 @@
 
         let currentLevel = 1;
         let score = 0;
-        let timeLeft = 70; // ⏱️ Waktu 70 Detik
+        let timeLeft = 70;
         let timerInterval = null;
         let enemyInterval = null;
         let enemyProgressPercent = 0;
@@ -311,6 +379,7 @@
         };
 
         function mulaiPermainan() {
+            playSound('flip');
             document.getElementById('home-screen').style.display = 'none';
             document.getElementById('game-screen').style.display = 'flex';
             currentLevel = 1;
@@ -373,6 +442,7 @@
                 if (timeLeft <= 0) {
                     clearInterval(timerInterval);
                     clearInterval(enemyInterval);
+                    playSound('lose');
                     alert('⏳ Waktu Habis! Mengulang level...');
                     startLevel(currentLevel);
                 }
@@ -388,6 +458,7 @@
                     if (enemyProgressPercent >= 100) {
                         clearInterval(timerInterval);
                         clearInterval(enemyInterval);
+                        playSound('lose');
                         alert('👾 Musuh telah menyelesaikan papan terlebih dahulu! Kamu Kalah!');
                         startLevel(currentLevel);
                     }
@@ -401,6 +472,7 @@
             card.classList.add('flipped');
 
             if (card.dataset.type === 'enemy') {
+                playSound('wrong');
                 score = Math.max(0, score - 10);
                 document.getElementById('score').innerText = score;
                 canClick = false;
@@ -412,6 +484,7 @@
                 return;
             }
 
+            playSound('flip');
             flippedCards.push(card);
 
             if (flippedCards.length === 2) {
@@ -419,6 +492,7 @@
                 const [card1, card2] = flippedCards;
 
                 if (card1.dataset.id === card2.dataset.id) {
+                    playSound('match');
                     card1.classList.add('matched');
                     card2.classList.add('matched');
                     score += 10;
@@ -431,6 +505,7 @@
                     if (matchedCount === totalImages) {
                         clearInterval(timerInterval);
                         clearInterval(enemyInterval);
+                        playSound('win');
                         setTimeout(() => {
                             if (currentLevel < 3) {
                                 alert(`🎉 LEVEL SELESAI!\nSkor: ${score}\nLanjut ke Level ${currentLevel + 1}`);
@@ -444,6 +519,7 @@
                     }
                 } else {
                     setTimeout(() => {
+                        playSound('wrong');
                         card1.classList.remove('flipped');
                         card2.classList.remove('flipped');
                         flippedCards = [];
