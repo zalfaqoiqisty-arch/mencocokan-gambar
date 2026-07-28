@@ -18,49 +18,48 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             min-height: 100vh;
             padding: 20px;
             user-select: none;
             overflow-x: hidden;
         }
 
-        /* BRANDING HEADER - Tiga Kolom Seimbang */
+        /* 📌 HEADER MELEBAR KE POJOK KIRI DAN KANAN LAYAR */
         .brand-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
             background: rgba(255, 255, 255, 0.05);
-            padding: 10px 20px;
+            padding: 12px 25px;
             border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.12);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             width: 100%;
-            max-width: 500px; /* Lebar header disesuaikan */
+            max-width: 900px; /* Melebar ke pojok */
         }
 
         .brand-header img {
-            width: 38px;
-            height: 38px;
+            width: 45px;
+            height: 45px;
             object-fit: contain;
-            border-radius: 6px;
+            border-radius: 8px;
         }
 
         .brand-title {
             text-align: center;
             flex-grow: 1;
-            padding: 0 10px;
+            padding: 0 15px;
         }
 
         .brand-title h1 {
-            font-size: 15px;
+            font-size: 18px;
             color: #00d2d3;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
         }
 
         .brand-title p {
-            font-size: 11px;
+            font-size: 12px;
             color: #8395a7;
         }
 
@@ -71,11 +70,12 @@
             align-items: center;
             text-align: center;
             width: 100%;
-            max-width: 450px;
+            max-width: 500px;
             background: rgba(255, 255, 255, 0.03);
             padding: 30px;
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 20px;
         }
 
         .main-play-btn {
@@ -103,7 +103,7 @@
             flex-direction: column;
             align-items: center;
             width: 100%;
-            max-width: 500px;
+            max-width: 550px;
         }
 
         .game-panel {
@@ -112,36 +112,51 @@
             justify-content: space-between;
             width: 100%;
             background: rgba(255, 255, 255, 0.07);
-            padding: 12px 20px;
+            padding: 15px 25px;
             border-radius: 18px;
             border: 1px solid rgba(255, 255, 255, 0.15);
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
 
-        .char-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: #222f3e;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            border: 2px solid #00d2d3;
-        }
-
-        .stats-center {
+        /* KANTONG GAMBAR KARAKTER (SAYA & MUSUH) */
+        .char-box {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 4px;
         }
 
+        .char-avatar {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: #222f3e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 26px;
+            border: 2px solid #00d2d3;
+            overflow: hidden;
+        }
+
+        .char-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .stats-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
         .stat-badge {
             background: rgba(0, 0, 0, 0.4);
-            padding: 4px 10px;
+            padding: 5px 14px;
             border-radius: 15px;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: bold;
         }
 
@@ -154,12 +169,12 @@
             width: 100%;
         }
 
-        .board.level-1 { grid-template-columns: repeat(3, 80px); }
-        .board.level-2 { grid-template-columns: repeat(4, 70px); }
-        .board.level-3 { grid-template-columns: repeat(6, 55px); }
+        .board.level-1 { grid-template-columns: repeat(3, 85px); }
+        .board.level-2 { grid-template-columns: repeat(4, 75px); }
+        .board.level-3 { grid-template-columns: repeat(6, 60px); }
 
         .card {
-            height: 75px;
+            height: 80px;
             background: #222f3e;
             border-radius: 10px;
             cursor: pointer;
@@ -176,14 +191,12 @@
             transform: scale(1.05);
         }
 
-        /* Cover belakang (sebelum diklik) */
         .card::before {
             content: "❓";
-            font-size: 20px;
+            font-size: 22px;
             opacity: 0.6;
         }
 
-        /* Tampilan saat kartu dibalik / diklik */
         .card img {
             width: 75%;
             height: 75%;
@@ -217,18 +230,15 @@
 </head>
 <body>
 
-    <!-- BRANDING HEADER: LOGO KIRI, JUDUL TENGAH, LOGO KANAN -->
+    <!-- BRANDING HEADER: LOGO SMK DI POJOK KIRI, LOGO JURUSAN DI POJOK KANAN -->
     <div class="brand-header">
-        <!-- Logo SMK (Kiri) -->
         <img src="logoSmk.jpeg" alt="Logo SMK">
         
-        <!-- Judul (Tengah) -->
         <div class="brand-title">
             <h1>GAME MENCOCOKKAN GAMBAR</h1>
             <p>Aesthetic Matching Project</p>
         </div>
 
-        <!-- Logo Jurusan (Kanan) -->
         <img src="logojurusan.jpeg" alt="Logo Jurusan">
     </div>
 
@@ -241,20 +251,25 @@
     <!-- ARENA GAME -->
     <div id="game-screen">
         <div class="game-panel">
-            <div style="text-align:center;">
+            <!-- KARAKTER SAYA -->
+            <div class="char-box">
                 <div class="char-avatar">🤠</div>
                 <span id="playerName" style="font-size: 11px; font-weight: bold; letter-spacing: 1px;">SAYA</span>
             </div>
 
+            <!-- STATUS TENGAN -->
             <div class="stats-center">
-                <div id="levelText" style="color:#00d2d3; font-weight:bold; font-size:12px;">LEVEL 1</div>
-                <div class="stat-badge">⏱️ Waktu: <span id="timer">60</span>s</div>
+                <div id="levelText" style="color:#00d2d3; font-weight:bold; font-size:13px;">LEVEL 1</div>
+                <div class="stat-badge">⏱️ Waktu: <span id="timer">70</span>s</div>
                 <div class="stat-badge">🏆 Skor: <span id="score">0</span></div>
             </div>
 
-            <div style="text-align:center;">
+            <!-- KARAKTER MUSUH & PROGRESS KETERANGAN MUSUH -->
+            <div class="char-box">
                 <div class="char-avatar" style="border-color:#ff4757;">👾</div>
                 <span style="font-size: 11px; font-weight: bold; color:#ff4757; letter-spacing: 1px;">MUSUH</span>
+                <!-- KETERANGAN PROGRESS MUSUH -->
+                <span id="enemyProgress" style="font-size: 10px; color: #ff6b6b; font-weight: bold;">Status: 0%</span>
             </div>
         </div>
 
@@ -262,7 +277,6 @@
     </div>
 
     <script>
-        // URL Gambar Online (Pasti Muncul)
         const onlineImages = [
             'https://cdn-icons-png.flaticon.com/512/742/742751.png',
             'https://cdn-icons-png.flaticon.com/512/3081/3081840.png',
@@ -278,8 +292,10 @@
 
         let currentLevel = 1;
         let score = 0;
-        let timeLeft = 60;
+        let timeLeft = 70; // ⏱️ Waktu diubah jadi 70 Detik
         let timerInterval = null;
+        let enemyInterval = null;
+        let enemyProgressPercent = 0;
         let flippedCards = [];
         let matchedCount = 0;
         let canClick = true;
@@ -301,16 +317,19 @@
 
         function startLevel(level) {
             clearInterval(timerInterval);
+            clearInterval(enemyInterval);
             const board = document.getElementById('board');
             board.innerHTML = '';
             flippedCards = [];
             matchedCount = 0;
             canClick = true;
+            enemyProgressPercent = 0;
 
             const config = levelConfig[level];
-            timeLeft = 60;
+            timeLeft = 70; // Reset ke 70 Detik setiap level
             document.getElementById('timer').innerText = timeLeft;
             document.getElementById('levelText').innerText = config.name;
+            document.getElementById('enemyProgress').innerText = `Status: 0%`;
             board.className = `board ${config.gridClass}`;
 
             let deck = [];
@@ -343,15 +362,33 @@
                 board.appendChild(card);
             });
 
+            // Timer Utama (70 Detik)
             timerInterval = setInterval(() => {
                 timeLeft--;
                 document.getElementById('timer').innerText = timeLeft;
                 if (timeLeft <= 0) {
                     clearInterval(timerInterval);
+                    clearInterval(enemyInterval);
                     alert('⏳ Waktu Habis! Mengulang level...');
                     startLevel(currentLevel);
                 }
             }, 1000);
+
+            // Pergerakan Progress Musuh (Otomatis Bertambah Seiring Waktu)
+            if (config.hasEnemy) {
+                enemyInterval = setInterval(() => {
+                    enemyProgressPercent += 2;
+                    if (enemyProgressPercent > 100) enemyProgressPercent = 100;
+                    document.getElementById('enemyProgress').innerText = `Progress: ${enemyProgressPercent}%`;
+
+                    if (enemyProgressPercent >= 100) {
+                        clearInterval(timerInterval);
+                        clearInterval(enemyInterval);
+                        alert('👾 Musuh telah menyelesaikan papan terlebih dahulu! Kamu Kalah!');
+                        startLevel(currentLevel);
+                    }
+                }, 1000);
+            }
         }
 
         function flipCard(card) {
@@ -389,6 +426,7 @@
                     const totalImages = levelConfig[currentLevel].pairs * 2;
                     if (matchedCount === totalImages) {
                         clearInterval(timerInterval);
+                        clearInterval(enemyInterval);
                         setTimeout(() => {
                             if (currentLevel < 3) {
                                 alert(`🎉 LEVEL SELESAI!\nSkor: ${score}\nLanjut ke Level ${currentLevel + 1}`);
