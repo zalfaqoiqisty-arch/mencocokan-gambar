@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GAME MENCOCOKKAN-GAMBAR - Matching Project</title>
+    <title>GAME MENCOCOKKAN GAMBAR - Matching Project</title>
     <style>
         * {
             box-sizing: border-box;
@@ -37,10 +37,25 @@
             margin-bottom: 15px;
         }
 
+        /* CONTAINER LOGO SEKOLAH & JURUSAN */
+        .brand-logos {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .brand-logos img {
+            width: 38px;
+            height: 38px;
+            object-fit: contain;
+            border-radius: 6px;
+        }
+
         .brand-title h1 {
-            font-size: 18px;
+            font-size: 16px;
             color: #00d2d3;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .brand-title p {
@@ -201,10 +216,15 @@
 </head>
 <body>
 
+    <!-- BRANDING HEADER DENGAN LOGO SEKOLAH & JURUSAN -->
     <div class="brand-header">
-        <span style="font-size: 24px;">🎮</span>
+        <div class="brand-logos">
+            <img src="logoSmk.jpeg" alt="Logo SMK">
+            <img src="logojurusan.jpeg" alt="Logo Jurusan">
+        </div>
         <div class="brand-title">
-            <h1>Game Development</h1>
+            <!-- JUDUL SUDAH DIGANTI -->
+            <h1>GAME MENCOCOKKAN GAMBAR</h1>
             <p>Aesthetic Matching Project</p>
         </div>
     </div>
@@ -220,7 +240,6 @@
         <div class="game-panel">
             <div style="text-align:center;">
                 <div class="char-avatar">🤠</div>
-                <!-- NAMA SUDAH DIGANTI MENJADI 'SAYA' -->
                 <span id="playerName" style="font-size: 11px; font-weight: bold; letter-spacing: 1px;">SAYA</span>
             </div>
 
