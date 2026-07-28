@@ -25,63 +25,62 @@
             overflow-x: hidden;
         }
 
-        /* 🖼️ GAYA UMUM LOGO & BRANDING */
+        /* 🖼️ CONTAINER LOGO & BRANDING */
         .all-logos-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
+            gap: 12px;
+            margin-bottom: 20px;
             width: 100%;
-            max-width: 600px;
+            max-width: 520px;
         }
 
         .emblem-row {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             justify-content: center;
             align-items: center;
         }
 
         .emblem-img {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             object-fit: contain;
-            filter: drop-shadow(0 2px 4px rgba(255,255,255,0.2));
+            filter: drop-shadow(0 2px 5px rgba(255,255,255,0.2));
         }
 
         .brand-header {
             display: flex;
             align-items: center;
-            gap: 15px;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 15px 25px;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 20px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
         .brand-logo-main {
-            width: 70px;
-            height: 70px;
+            width: 55px;
+            height: 55px;
             object-fit: contain;
-            border-radius: 12px;
-            filter: drop-shadow(0 4px 8px rgba(0,210,211,0.5));
+            filter: drop-shadow(0 0 8px rgba(0,210,211,0.6));
         }
 
         .brand-title h1 {
-            font-size: 24px;
+            font-size: 20px;
             color: #00d2d3;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            text-shadow: 0 0 10px rgba(0,210,211,0.5);
+            letter-spacing: 1px;
         }
 
         .brand-title p {
-            font-size: 13px;
+            font-size: 11px;
             color: #8395a7;
         }
 
-        /* 🏠 GAYA HALAMAN BERANDA (MAIN MENU) */
+        /* 🏠 BERANDA (MAIN MENU) */
         #home-screen {
             display: flex;
             flex-direction: column;
@@ -89,20 +88,26 @@
             justify-content: center;
             text-align: center;
             width: 100%;
-            max-width: 600px;
-            transition: opacity 0.5s ease, transform 0.5s ease;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 30px 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s ease;
         }
 
         .welcome-text {
-            font-size: 18px;
+            font-size: 15px;
             color: #c8d6e5;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             line-height: 1.6;
         }
 
         .main-play-btn {
-            padding: 18px 40px;
-            font-size: 20px;
+            padding: 15px 38px;
+            font-size: 18px;
             font-weight: bold;
             text-transform: uppercase;
             color: #fff;
@@ -110,50 +115,40 @@
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 10px 20px rgba(16, 172, 132, 0.4);
-            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(16, 172, 132, 0.4);
+            transition: all 0.2s ease;
             letter-spacing: 1px;
         }
 
         .main-play-btn:hover {
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 15px 30px rgba(16, 172, 132, 0.6);
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 12px 25px rgba(16, 172, 132, 0.6);
         }
 
         .main-play-btn:active {
             transform: translateY(1px);
         }
 
-        /* 🎮 GAYA AREA PERMAINAN (GAMEPLAY) */
+        /* 🎮 AREA GAMPLAY */
         #game-screen {
-            display: none; /* Sembunyikan dulu */
+            display: none;
             flex-direction: column;
             align-items: center;
-            width: 100%;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-
-        /* Container stats & gamepad saat main */
-        .game-meta-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
             width: 100%;
             max-width: 520px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
         #gamepadStatus {
             font-size: 11px;
-            padding: 5px 15px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.05);
-            color: #8395a7;
+            padding: 5px 14px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #c8d6e5;
             font-weight: bold;
-            border: 1px solid rgba(255,255,255,0.05);
+            margin-bottom: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .game-panel {
@@ -163,9 +158,10 @@
             width: 100%;
             background: rgba(255, 255, 255, 0.07);
             backdrop-filter: blur(10px);
-            padding: 15px 25px;
+            padding: 12px 20px;
             border-radius: 18px;
             border: 1px solid rgba(255, 255, 255, 0.15);
+            margin-bottom: 18px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
         }
 
@@ -173,18 +169,18 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
+            gap: 5px;
         }
 
         .char-avatar {
-            width: 60px;
-            height: 60px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             background: #222f3e;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 30px;
+            font-size: 26px;
             border: 2px solid #00d2d3;
             overflow: hidden;
             box-shadow: 0 0 10px rgba(0,210,211,0.3);
@@ -197,138 +193,152 @@
         }
 
         .char-name {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: bold;
             color: #c8d6e5;
-            letter-spacing: 0.5px;
         }
 
         .stats-center {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         #levelText {
-            font-size: 14px;
+            font-size: 12px;
             color: #00d2d3;
             font-weight: bold;
             text-transform: uppercase;
-            margin-bottom: 2px;
         }
 
         .stat-badge {
             background: rgba(0, 0, 0, 0.4);
-            padding: 6px 15px;
+            padding: 5px 12px;
             border-radius: 20px;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: bold;
             border: 1px solid rgba(255,255,255,0.1);
             color: #fff;
         }
 
-        /* 🔲 GAYA KARTU */
+        /* 🔲 DESIGN KARTU */
         .board {
             display: grid;
-            gap: 12px;
+            gap: 10px;
             justify-content: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            width: 100%;
         }
 
-        /* Responsif Grid */
-        .board.level-1 { grid-template-columns: repeat(4, minmax(70px, 85px)); }
-        .board.level-2 { grid-template-columns: repeat(4, minmax(70px, 85px)); }
-        .board.level-3 { grid-template-columns: repeat(6, minmax(50px, 75px)); }
+        .board.level-1 { grid-template-columns: repeat(3, 85px); }
+        .board.level-2 { grid-template-columns: repeat(4, 75px); }
+        .board.level-3 { grid-template-columns: repeat(6, 60px); }
 
         .card {
-            aspect-ratio: 1 / 1;
-            background-color: #222f3e;
+            height: 80px;
+            background: #222f3e;
             border-radius: 12px;
             cursor: pointer;
             overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 5px 10px rgba(0,0,0,0.3);
-            transition: transform 0.2s, border 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            transition: transform 0.2s, border 0.2s, background 0.2s;
             position: relative;
-            border: 2px solid transparent;
+            border: 2px solid rgba(255,255,255,0.05);
         }
 
-        .card:hover { 
-            transform: translateY(-3px) scale(1.03);
-            border: 2px solid #00d2d3;
-            box-shadow: 0 8px 15px rgba(0,210,211,0.2);
+        /* Cover Belakang Kartu Saat Tertutup */
+        .card::before {
+            content: "❓";
+            font-size: 22px;
+            opacity: 0.5;
+            transition: opacity 0.2s;
         }
 
-        .card img, .card .enemy-icon {
+        .card:hover {
+            transform: scale(1.05);
+            border-color: #00d2d3;
+        }
+
+        /* Tampilan Gambar Kartu Saat Terbuka */
+        .card-content {
+            width: 100%;
+            height: 100%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            background: #2f3542;
+        }
+
+        .card-content img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: none;
-            pointer-events: none;
         }
 
-        .card .enemy-icon {
-            font-size: 40px;
-            background: #ff4757;
-            display: none;
-            align-items: center;
+        .card-fallback {
+            font-size: 28px;
+            display: flex;
             justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
         }
 
-        /* Status Kartu */
-        .card.flipped { border: 2px solid #00d2d3; transform: scale(1.05); }
-        .card.flipped img, .card.flipped .enemy-icon { display: flex; }
+        /* Status Kartu saat Terbuka (Flipped) */
+        .card.flipped::before { display: none; }
+        .card.flipped {
+            border: 2px solid #00d2d3;
+            background: #2f3542;
+        }
+        .card.flipped .card-content { display: flex; }
 
+        /* Status Kartu saat Cocok (Matched) */
+        .card.matched::before { display: none; }
         .card.matched {
             border: 2px solid #2ed573;
-            opacity: 0.6;
+            opacity: 0.65;
             cursor: default;
             transform: scale(1);
-            box-shadow: none;
         }
-        .card.matched img { display: block; }
+        .card.matched .card-content { display: flex; }
 
-        /* Tombol Suara saat main */
+        .enemy-card {
+            background: #ff4757 !important;
+            font-size: 32px;
+        }
+
         .in-game-btn {
             padding: 8px 18px;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.08);
             color: #8395a7;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.15);
             border-radius: 20px;
             cursor: pointer;
             font-weight: bold;
             font-size: 12px;
-            transition: all 0.2s;
         }
-        .in-game-btn:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
-
-        /* Utilitas Sembunyi */
-        .hidden { display: none !important; }
-        .fade-in { opacity: 1 !important; transform: translateY(0) !important; }
+        .in-game-btn:hover { color: #fff; background: rgba(255, 255, 255, 0.15); }
 
     </style>
 </head>
 <body>
 
     <!-- =========================================
-         🏠 AREA BERANDA (MAIN MENU)
+         🏠 HALAMAN BERANDA (MAIN MENU)
          ========================================= -->
     <div id="home-screen">
-        <!-- Komponen Branding (Semua Logo) -->
         <div class="all-logos-container">
             <div class="emblem-row">
-                <!-- Logo Sekolah -->
-                <img src="images/logo-sekolah.png" alt="SMKN 1 Sanden" class="emblem-img" onerror="this.style.display='none'">
-                <!-- Logo RPL -->
-                <img src="images/logo-rpl.png" alt="RPL" class="emblem-img" onerror="this.style.display='none'">
+                <img src="images/logo-sekolah.png" alt="Sekolah" class="emblem-img" onerror="this.onerror=null; this.src='https://cdn-icons-png.flaticon.com/512/167/167707.png';">
+                <img src="images/logo-rpl.png" alt="RPL" class="emblem-img" onerror="this.onerror=null; this.src='https://cdn-icons-png.flaticon.com/512/1006/1006771.png';">
             </div>
             
             <div class="brand-header">
-                <!-- Logo Moko -->
-                <img src="images/logo-moko.png" alt="Logo Moko" class="brand-logo-main" onerror="this.src='https://cdn-icons-png.flaticon.com/512/808/808439.png'">
+                <img src="images/logo-moko.png" alt="Logo Moko" class="brand-logo-main" onerror="this.onerror=null; this.src='https://cdn-icons-png.flaticon.com/512/808/808439.png';">
                 <div class="brand-title">
                     <h1>Game Development</h1>
                     <p>Aesthetic Matching Project</p>
@@ -337,59 +347,55 @@
         </div>
 
         <div class="welcome-text">
-            Selamat Datang di Permainan Mencocokkan Gambar.<br>
-            Uji ingatan Anda dan selesaikan semua level dalam waktu 1 menit!
+            Selamat Datang di Game Mencocokkan Gambar! 🎮<br>
+            Temukan pasangan gambar yang sama sebelum waktu 1 menit habis.
         </div>
 
-        <button class="main-play-btn" onclick="tambahKePermainan()">Mulai Permainan</button>
+        <button class="main-play-btn" onclick="mulaiPermainan()">Mulai Permainan</button>
     </div>
 
 
     <!-- =========================================
-         🎮 AREA PERMAINAN (GAMEPLAY)
+         🎮 HALAMAN ARENA PERMAINAN
          ========================================= -->
     <div id="game-screen">
-        <!-- Header Branding Tetap Tampil saat Main -->
-        <div class="all-logos-container" style="margin-bottom: 15px; scale: 0.8; transform-origin: top;">
+        <!-- Logo Tetap Muncul di Permainan -->
+        <div class="all-logos-container" style="margin-bottom: 10px; scale: 0.85;">
             <div class="emblem-row">
-                <img src="images/logo-sekolah.png" alt="SMKN 1 Sanden" class="emblem-img" onerror="this.style.display='none'">
-                <img src="images/logo-rpl.png" alt="RPL" class="emblem-img" onerror="this.style.display='none'">
+                <img src="images/logo-sekolah.png" alt="Sekolah" class="emblem-img" onerror="this.onerror=null; this.src='https://cdn-icons-png.flaticon.com/512/167/167707.png';">
+                <img src="images/logo-rpl.png" alt="RPL" class="emblem-img" onerror="this.onerror=null; this.src='https://cdn-icons-png.flaticon.com/512/1006/1006771.png';">
             </div>
-            <div class="brand-header" style="padding: 10px 20px;">
-                <img src="images/logo-moko.png" alt="Logo Moko" class="brand-logo-main" style="width: 50px; height: 50px;" onerror="this.src='https://cdn-icons-png.flaticon.com/512/808/808439.png'">
+            <div class="brand-header" style="padding: 8px 16px;">
+                <img src="images/logo-moko.png" alt="Moko" class="brand-logo-main" style="width: 40px; height: 40px;" onerror="this.onerror=null; this.src='https://cdn-icons-png.flaticon.com/512/808/808439.png';">
                 <div class="brand-title">
-                    <h1 style="font-size: 18px;">Game Development</h1>
+                    <h1 style="font-size: 16px;">Game Development</h1>
                 </div>
             </div>
         </div>
 
-        <!-- Meta info & Stats -->
-        <div class="game-meta-container">
-            <div id="gamepadStatus">🖱️ Mode: Mouse / Touch Screen</div>
+        <div id="gamepadStatus">🖱️ Mode: Mouse / Touch Screen</div>
 
-            <div class="game-panel">
-                <div class="char-box">
-                    <div class="char-avatar">
-                        <!-- Logo Zalfa untuk Player -->
-                        <img src="images/logo-zalfa.png" alt="Zalfa" onerror="this.style.display='none'; this.parentElement.innerText='🤠';">
-                    </div>
-                    <span class="char-name">ZALFA</span>
+        <div class="game-panel">
+            <div class="char-box">
+                <div class="char-avatar">
+                    <img src="images/logo-zalfa.png" alt="Zalfa" onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerText='🤠';">
                 </div>
+                <span class="char-name">ZALFA</span>
+            </div>
 
-                <div class="stats-center">
-                    <div id="levelText">LEVEL 1</div>
-                    <div class="stat-badge">⏱️ Waktu: <span id="timer">60</span>s</div>
-                    <div class="stat-badge">🏆 Skor: <span id="score">0</span></div>
-                </div>
+            <div class="stats-center">
+                <div id="levelText">LEVEL 1</div>
+                <div class="stat-badge">⏱️ Waktu: <span id="timer">60</span>s</div>
+                <div class="stat-badge">🏆 Skor: <span id="score">0</span></div>
+            </div>
 
-                <div class="char-box">
-                    <div class="char-avatar" style="border-color: #ff4757;">👾</div>
-                    <span class="char-name" style="color: #ff4757;">MUSUH</span>
-                </div>
+            <div class="char-box">
+                <div class="char-avatar" style="border-color: #ff4757;">👾</div>
+                <span class="char-name" style="color: #ff4757;">MUSUH</span>
             </div>
         </div>
 
-        <!-- Arena Kartu -->
+        <!-- Board Tempat Kartu -->
         <div class="board level-1" id="board"></div>
 
         <button class="in-game-btn" onclick="toggleAudio()">🎵 Suara On/Off</button>
@@ -397,17 +403,18 @@
 
 
     <!-- =========================================
-         🛠️ SKRIP LOGIKA PERMAINAN
+         🛠️ SCRIPT LOGIKA GAME
          ========================================= -->
     <script>
-        // 1. DATA ASET GAMBAR KARTU
+        // List gambar & emoji fallback otomatis jika file belum ada di folder images/
+        const fallbackEmojis = ['🚀', '🎨', '💻', '🎮', '⚽', '🍕', '🤖', '⭐', '🔥', '💎', '🌈', '🎵'];
+        
         const allImages = [
             'images/1.png', 'images/2.png', 'images/3.png', 'images/4.png',
             'images/5.png', 'images/6.png', 'images/7.png', 'images/8.png',
             'images/9.png', 'images/10.png', 'images/11.png', 'images/12.png'
         ];
 
-        // Status Game Global
         let currentLevel = 1;
         let score = 0;
         let timeLeft = 60; // 1 Menit
@@ -417,7 +424,6 @@
         let canClick = true;
         let currentDeck = [];
 
-        // Elemen DOM
         const homeScreen = document.getElementById('home-screen');
         const gameScreen = document.getElementById('game-screen');
         const timerEl = document.getElementById('timer');
@@ -425,28 +431,30 @@
         const board = document.getElementById('board');
         const levelTextEl = document.getElementById('levelText');
 
-        // Konfigurasi Level
+        // Level Config: Waktu 60 detik (1 menit), skor +10 cocok, -10 musuh
         const levelConfig = {
             1: { pairs: 3, hasEnemy: false, time: 60, gridClass: 'level-1', name: 'LEVEL 1: MUDAH' },
-            2: { pairs: 5, hasEnemy: true,  time: 60, gridClass: 'level-2', name: 'LEVEL 2: AWAS MUSUH! 👾' },
-            3: { pairs: 10, hasEnemy: true, time: 60, gridClass: 'level-3', name: 'LEVEL 3: MASTER 🏆' }
+            2: { pairs: 4, hasEnemy: true,  time: 60, gridClass: 'level-2', name: 'LEVEL 2: AWAS MUSUH! 👾' },
+            3: { pairs: 9, hasEnemy: true,  time: 60, gridClass: 'level-3', name: 'LEVEL 3: MASTER 🏆' }
         };
 
-        // 2. SISTEM AUDIO SINTETIS
+        // Audio Synth
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         let isAudioMuted = false;
 
         function playSound(freq, type = 'sine', duration = 0.15) {
             if (isAudioMuted || audioCtx.state === 'suspended') return;
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.type = type;
-            osc.frequency.value = freq;
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-            osc.start();
-            gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + duration);
-            osc.stop(audioCtx.currentTime + duration);
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.value = freq;
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + duration);
+                osc.stop(audioCtx.currentTime + duration);
+            } catch(e){}
         }
 
         function toggleAudio() {
@@ -455,37 +463,20 @@
             alert(isAudioMuted ? "Suara Dimatikan 🔇" : "Suara Diaktifkan 🔊");
         }
 
-        // 3. FUNGSI TRANSISI MENU KE GAME
-        function tambahKePermainan() {
-            // Aktifkan Audio Context (dibutuhkan browser modern)
+        function mulaiPermainan() {
             if (audioCtx.state === 'suspended') audioCtx.resume();
-            
-            playSound(500, 'triangle', 0.3); // Suara klik mulai
+            playSound(500, 'triangle', 0.2);
 
-            // Sembunyikan Beranda dengan efek fade
-            homeScreen.style.opacity = '0';
-            homeScreen.style.transform = 'scale(0.9)';
-            
-            setTimeout(() => {
-                homeScreen.style.display = 'none';
-                
-                // Tampilkan Game Screen
-                gameScreen.style.display = 'flex';
-                
-                // Trigger reflow untuk animasi
-                void gameScreen.offsetWidth;
-                
-                gameScreen.classList.add('fade-in');
+            homeScreen.style.display = 'none';
+            gameScreen.style.display = 'flex';
+            setTimeout(() => { gameScreen.style.opacity = '1'; }, 50);
 
-                // Mulai permainan dari level 1
-                currentLevel = 1;
-                score = 0;
-                scoreEl.innerText = score;
-                startLevel(currentLevel);
-            }, 500);
+            currentLevel = 1;
+            score = 0;
+            scoreEl.innerText = score;
+            startLevel(currentLevel);
         }
 
-        // 4. LOGIKA UTAMA PERMAINAN
         function startLevel(level) {
             clearInterval(timerInterval);
             board.innerHTML = '';
@@ -499,90 +490,83 @@
             levelTextEl.innerText = config.name;
             board.className = `board ${config.gridClass}`;
 
-            // Siapkan Kartu
             let selectedImages = allImages.slice(0, config.pairs);
             currentDeck = [];
 
-            selectedImages.forEach(img => {
-                currentDeck.push({ type: 'img', val: img });
-                currentDeck.push({ type: 'img', val: img });
+            selectedImages.forEach((img, idx) => {
+                currentDeck.push({ type: 'img', val: img, id: idx });
+                currentDeck.push({ type: 'img', val: img, id: idx });
             });
 
-            // Tambah Musuh
             if (config.hasEnemy) {
-                currentDeck.push({ type: 'enemy', val: 'ENEMY' });
-                currentDeck.push({ type: 'enemy', val: 'ENEMY' });
+                currentDeck.push({ type: 'enemy', val: 'ENEMY', id: 'enemy' });
+                currentDeck.push({ type: 'enemy', val: 'ENEMY', id: 'enemy' });
             }
 
-            // Acak
+            // Acak Urutan Kartu
             currentDeck.sort(() => Math.random() - 0.5);
 
-            // Buat Elemen Kartu
+            // Render Kartu ke Arena
             currentDeck.forEach((item) => {
                 const card = document.createElement('div');
                 card.classList.add('card');
                 card.dataset.type = item.type;
-                card.dataset.value = item.val;
+                card.dataset.id = item.id;
+
+                const content = document.createElement('div');
+                content.classList.add('card-content');
 
                 if (item.type === 'img') {
                     const img = document.createElement('img');
                     img.src = item.val;
-                    // Fallback jika gambar kartu lokal tidak ketemu
-                    img.onerror = function() { 
-                        this.style.display = 'none'; 
-                        this.parentElement.innerText = '🖼️'; 
-                        this.parentElement.style.fontSize = '30px';
-                        this.parentElement.style.color = '#8395a7';
+                    
+                    // Fallback Pintar: Jika file gambar di images/ tidak ada, otomatis pakai Emoji!
+                    img.onerror = function() {
+                        this.style.display = 'none';
+                        const fallback = document.createElement('div');
+                        fallback.classList.add('card-fallback');
+                        fallback.innerText = fallbackEmojis[item.id % fallbackEmojis.length];
+                        content.appendChild(fallback);
                     };
-                    card.appendChild(img);
+                    content.appendChild(img);
                 } else {
-                    const enemy = document.createElement('div');
-                    enemy.classList.add('enemy-icon');
-                    enemy.innerText = '👾';
-                    card.appendChild(enemy);
+                    content.classList.add('enemy-card');
+                    content.innerText = '👾';
                 }
 
+                card.appendChild(content);
                 card.onclick = function() { triggerCardFlip(this); };
                 board.appendChild(card);
             });
 
-            // Mulai Timer
+            // Timer 1 Menit
             timerInterval = setInterval(() => {
                 timeLeft--;
                 timerEl.innerText = timeLeft;
-                if (timeLeft <= 10) timerEl.style.color = '#ff4757'; // Merah jika waktu mau habis
-                else timerEl.style.color = '#fff';
-
                 if (timeLeft <= 0) {
                     clearInterval(timerInterval);
-                    playSound(150, 'sawtooth', 0.5);
-                    alert('⏳ WAKTU HABIS!\nGame Over. Coba lagi dari level 1.');
-                    
-                    // Kembali ke Level 1
-                    currentLevel = 1;
-                    score = 0;
-                    scoreEl.innerText = score;
+                    playSound(150, 'sawtooth', 0.4);
+                    alert('⏳ WAKTU HABIS!\nWaktu 1 menit telah berlalu. Coba lagi!');
                     startLevel(currentLevel);
                 }
             }, 1000);
         }
 
-        // 5. LOGIKA FLIP & COCOK
         function triggerCardFlip(card) {
             if (!canClick || card.classList.contains('flipped') || card.classList.contains('matched')) return;
 
-            playSound(400, 'sine', 0.05); // Suara flip pendek
+            playSound(400, 'sine', 0.08);
             card.classList.add('flipped');
 
-            // CEK MUSUH
+            // Cek Jika Membuka Kartu Musuh
             if (card.dataset.type === 'enemy') {
-                playSound(100, 'sawtooth', 0.3);
-                score = Math.max(0, score - 10); // Penalti Skor
+                playSound(120, 'sawtooth', 0.3);
+                score = Math.max(0, score - 10);
                 scoreEl.innerText = score;
                 canClick = false;
 
                 setTimeout(() => {
-                    alert('👾 BOOM! Jebakan Musuh!\nSkor berkurang -10.');
+                    alert('👾 JEBAKAN MUSUH!\nSkor Anda berkurang -10 poin.');
                     card.classList.remove('flipped');
                     canClick = true;
                 }, 500);
@@ -592,7 +576,7 @@
             flippedCards.push(card);
 
             if (flippedCards.length === 2) {
-                canClick = false; // Kunci klik sebentar
+                canClick = false;
                 checkMatch();
             }
         }
@@ -600,48 +584,44 @@
         function checkMatch() {
             const [card1, card2] = flippedCards;
 
-            if (card1.dataset.value === card2.dataset.value) {
-                // COCOK
+            if (card1.dataset.id === card2.dataset.id) {
+                // Gambar Cocok
                 playSound(600, 'sine', 0.15);
                 card1.classList.add('matched');
                 card2.classList.add('matched');
-                
-                score += 10; // Tambah Skor
+
+                score += 10;
                 scoreEl.innerText = score;
-                
+
                 flippedCards = [];
                 matchedCount += 2;
-                canClick = true; // Buka kunci klik
+                canClick = true;
 
                 const totalImageCards = currentDeck.filter(item => item.type === 'img').length;
 
-                // CEK MENANG LEVEL
                 if (matchedCount === totalImageCards) {
                     clearInterval(timerInterval);
-                    playSound(800, 'triangle', 0.5);
+                    playSound(800, 'triangle', 0.4);
 
                     setTimeout(() => {
                         if (currentLevel < 3) {
-                            alert(`🎉 LUAR BIASA!\nLevel ${currentLevel} Selesai.\nSkor Anda: ${score}\nWaktu Tersisa: ${timeLeft}s.\nLanjut ke Level Berikutnya!`);
+                            alert(`🎉 LEVEL SELESAI!\nSkor Saat Ini: ${score}\nLanjut ke Level ${currentLevel + 1}!`);
                             currentLevel++;
                             startLevel(currentLevel);
                         } else {
-                            // TAMAT
-                            alert(`🏆 SELAMAT! ANDA MENANG!\nAnda berhasil menamatkan semua level.\nTotal Skor Akhir: ${score}\nTerima kasih telah bermain!`);
-                            // Opsi: Reload untuk kembali ke beranda
+                            alert(`🏆 SELAMAT! ANDA MENANG!\nTotal Skor Akhir: ${score}`);
                             location.reload();
                         }
-                    }, 500);
+                    }, 400);
                 }
             } else {
-                // TIDAK COCOK
+                // Gambar Tidak Cocok
                 playSound(200, 'square', 0.15);
-                
                 setTimeout(() => {
                     card1.classList.remove('flipped');
                     card2.classList.remove('flipped');
                     flippedCards = [];
-                    canClick = true; // Buka kunci klik
+                    canClick = true;
                 }, 800);
             }
         }
