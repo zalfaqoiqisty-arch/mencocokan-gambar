@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <!-- 📌 JUDUL UNTUK BROWSER & PREVIEW LINK -->
     <title>MATCH PICTURE - GAME MENCOCOKKAN GAMBAR</title>
@@ -25,7 +25,7 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            padding: 20px 20px 90px 20px;
+            padding: 10px 15px 80px 15px;
             user-select: none;
             overflow-x: hidden;
         }
@@ -36,10 +36,10 @@
             align-items: center;
             justify-content: space-between;
             background: rgba(255, 255, 255, 0.05);
-            padding: 12px 20px;
-            border-radius: 16px;
+            padding: 8px 15px;
+            border-radius: 14px;
             border: 1px solid rgba(255, 255, 255, 0.12);
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             width: 100%;
             max-width: 900px;
         }
@@ -47,14 +47,14 @@
         .header-logos-left, .header-logos-right {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 6px;
         }
 
         .header-logos-left img, .header-logos-right img {
-            width: 45px;
-            height: 45px;
+            width: 38px;
+            height: 38px;
             object-fit: contain;
-            border-radius: 8px;
+            border-radius: 6px;
             background: rgba(255,255,255,0.05);
             padding: 2px;
         }
@@ -65,29 +65,29 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 0 10px;
+            padding: 0 5px;
         }
 
         .center-logo img {
-            height: 50px;
+            height: 38px;
             width: auto;
             object-fit: contain;
             filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
 
         .brand-title h1 {
-            font-size: 13px;
+            font-size: 11px;
             color: #00d2d3;
             text-transform: uppercase;
             letter-spacing: 1px;
-            line-height: 1.2;
+            line-height: 1.1;
         }
 
         .brand-title p {
-            font-size: 10px;
+            font-size: 9px;
             color: #8395a7;
-            margin-top: 2px;
+            margin-top: 1px;
         }
 
         /* 🏠 HALAMAN UTAMA */
@@ -97,24 +97,24 @@
             align-items: center;
             text-align: center;
             width: 100%;
-            max-width: 500px;
+            max-width: 450px;
             background: rgba(255, 255, 255, 0.03);
-            padding: 30px;
+            padding: 20px;
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
         .home-main-logo {
-            width: 150px;
+            width: 120px;
             height: auto;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             filter: drop-shadow(0 8px 15px rgba(0,0,0,0.5));
         }
 
         .main-play-btn {
-            padding: 14px 35px;
-            font-size: 16px;
+            padding: 12px 30px;
+            font-size: 15px;
             font-weight: bold;
             text-transform: uppercase;
             color: #fff;
@@ -123,7 +123,7 @@
             border-radius: 50px;
             cursor: pointer;
             box-shadow: 0 8px 20px rgba(16, 172, 132, 0.4);
-            margin-top: 15px;
+            margin-top: 10px;
             transition: transform 0.2s;
         }
 
@@ -146,45 +146,45 @@
             justify-content: space-between;
             width: 100%;
             background: rgba(255, 255, 255, 0.07);
-            padding: 15px 25px;
-            border-radius: 18px;
+            padding: 10px 20px;
+            border-radius: 14px;
             border: 1px solid rgba(255, 255, 255, 0.15);
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         .stats-center {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             align-items: center;
         }
 
         .stat-badge {
             background: rgba(0, 0, 0, 0.4);
-            padding: 6px 16px;
-            border-radius: 15px;
-            font-size: 14px;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 13px;
             font-weight: bold;
         }
 
         /* 🔲 PAPAN KARTU RESPONSIF */
         .board {
             display: grid;
-            gap: 12px;
+            gap: 10px;
             justify-content: center;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             width: 100%;
         }
 
-        .board.level-1 { grid-template-columns: repeat(3, minmax(75px, 95px)); }
-        .board.level-2 { grid-template-columns: repeat(4, minmax(70px, 85px)); }
-        .board.level-3 { grid-template-columns: repeat(4, minmax(65px, 80px)); }
-        .board.level-4 { grid-template-columns: repeat(4, minmax(60px, 75px)); }
-        .board.level-5 { grid-template-columns: repeat(5, minmax(55px, 70px)); }
+        .board.level-1 { grid-template-columns: repeat(3, minmax(65px, 85px)); }
+        .board.level-2 { grid-template-columns: repeat(4, minmax(60px, 75px)); }
+        .board.level-3 { grid-template-columns: repeat(4, minmax(55px, 70px)); }
+        .board.level-4 { grid-template-columns: repeat(4, minmax(50px, 65px)); }
+        .board.level-5 { grid-template-columns: repeat(5, minmax(45px, 60px)); }
 
         .card {
             aspect-ratio: 1;
             background: #222f3e;
-            border-radius: 12px;
+            border-radius: 10px;
             cursor: pointer;
             display: flex;
             justify-content: center;
@@ -202,7 +202,7 @@
 
         .card::before {
             content: "❓";
-            font-size: 24px;
+            font-size: 20px;
             opacity: 0.6;
         }
 
@@ -232,6 +232,60 @@
             cursor: default;
         }
 
+        /* 📱 MEDIA QUERY KHUSUS LAYAR LANDSCAPE (HORIZONTAL) DI HP */
+        @media (max-height: 500px) and (orientation: landscape) {
+            body {
+                padding: 5px 10px 65px 10px;
+            }
+            .brand-header {
+                padding: 4px 10px;
+                margin-bottom: 5px;
+            }
+            .header-logos-left img, .header-logos-right img {
+                width: 30px;
+                height: 30px;
+            }
+            .center-logo img {
+                height: 28px;
+            }
+            .brand-title h1 {
+                font-size: 9px;
+            }
+            .brand-title p {
+                display: none; /* Sembunyikan subteks agar hemat tempat */
+            }
+            #home-screen {
+                padding: 10px;
+                max-width: 380px;
+            }
+            .home-main-logo {
+                width: 80px;
+                margin-bottom: 5px;
+            }
+            .main-play-btn {
+                padding: 8px 20px;
+                font-size: 13px;
+                margin-top: 5px;
+            }
+            .game-panel {
+                padding: 6px 15px;
+                margin-bottom: 6px;
+            }
+            /* Menyesuaikan ukuran kartu saat landscape agar tidak keluar layar */
+            .board.level-1 { grid-template-columns: repeat(6, minmax(40px, 50px)); }
+            .board.level-2 { grid-template-columns: repeat(6, minmax(40px, 50px)); }
+            .board.level-3 { grid-template-columns: repeat(8, minmax(38px, 48px)); }
+            .board.level-4 { grid-template-columns: repeat(5, minmax(38px, 48px)); }
+            .board.level-5 { grid-template-columns: repeat(6, minmax(35px, 45px)); }
+            
+            .card {
+                border-radius: 6px;
+            }
+            .card::before {
+                font-size: 14px;
+            }
+        }
+
         /* 🏆 MODAL SELESAI / GAME OVER */
         .modal-overlay {
             position: fixed;
@@ -250,30 +304,30 @@
         .modal-content {
             background: rgba(34, 47, 62, 0.95);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 35px;
-            border-radius: 24px;
+            padding: 25px;
+            border-radius: 20px;
             text-align: center;
-            max-width: 420px;
+            max-width: 380px;
             width: 90%;
             box-shadow: 0 20px 40px rgba(0,0,0,0.6);
         }
 
         .modal-content h2 {
-            font-size: 26px;
+            font-size: 22px;
             color: #1dd1a1;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
 
         .modal-content p {
-            font-size: 15px;
+            font-size: 14px;
             color: #c8d6e5;
-            margin-bottom: 20px;
-            line-height: 1.5;
+            margin-bottom: 15px;
+            line-height: 1.4;
         }
 
         .modal-btn {
-            padding: 12px 28px;
-            font-size: 15px;
+            padding: 10px 24px;
+            font-size: 14px;
             font-weight: bold;
             color: #fff;
             background: linear-gradient(135deg, #00d2d3 0%, #01a3a4 100%);
@@ -291,29 +345,29 @@
         /* 🎛️ PANEL PENGATURAN AUDIO */
         .audio-settings-bar {
             position: fixed;
-            bottom: 10px;
+            bottom: 8px;
             left: 50%;
             transform: translateX(-50%);
             width: 90%;
-            max-width: 600px;
+            max-width: 550px;
             background: rgba(15, 23, 42, 0.95);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 50px;
-            padding: 8px 20px;
+            padding: 6px 15px;
             display: flex;
             align-items: center;
             justify-content: space-around;
             box-shadow: 0 10px 25px rgba(0,0,0,0.5);
             z-index: 1000;
-            gap: 15px;
+            gap: 10px;
         }
 
         .audio-control-group {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 12px;
+            gap: 6px;
+            font-size: 11px;
             font-weight: bold;
             color: #00d2d3;
         }
@@ -321,10 +375,10 @@
         .audio-slider {
             -webkit-appearance: none;
             appearance: none;
-            width: 75px;
-            height: 5px;
+            width: 60px;
+            height: 4px;
             background: rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
+            border-radius: 4px;
             outline: none;
             cursor: pointer;
         }
@@ -332,8 +386,8 @@
         .audio-slider::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
-            width: 14px;
-            height: 14px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
             background: #1dd1a1;
             cursor: pointer;
@@ -344,9 +398,9 @@
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
             color: #fff;
-            padding: 5px 12px;
+            padding: 4px 10px;
             border-radius: 20px;
-            font-size: 11px;
+            font-size: 10px;
             cursor: pointer;
             transition: background 0.2s;
         }
@@ -383,14 +437,14 @@
     <!-- BERANDA -->
     <div id="home-screen">
         <img src="logogame.png" alt="Match Picture Logo" class="home-main-logo" onerror="this.onerror=null; this.src='https://placehold.co/150x150/1e293b/00d2d3?text=MATCH';">
-        <p style="color: #c8d6e5; font-size: 14px; margin-bottom: 10px;">Temukan pasangan gambar yang cocok sebelum waktu habis di setiap levelnya!</p>
+        <p style="color: #c8d6e5; font-size: 13px; margin-bottom: 8px;">Temukan pasangan gambar yang cocok sebelum waktu habis di setiap levelnya!</p>
         <button class="main-play-btn" onclick="mulaiPermainan()">Mulai Permainan</button>
     </div>
 
     <!-- ARENA GAME -->
     <div id="game-screen">
         <div class="game-panel">
-            <div id="levelText" style="color:#00d2d3; font-weight:bold; font-size:15px;">LEVEL 1</div>
+            <div id="levelText" style="color:#00d2d3; font-weight:bold; font-size:14px;">LEVEL 1</div>
             <div class="stats-center">
                 <div class="stat-badge">⏱️ Waktu: <span id="timer">70</span>s</div>
                 <div class="stat-badge">🏆 Skor: <span id="score">0</span></div>
