@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Matching - Aesthetic Edition</title>
+    <title>Game Matching - Aesthetic SVG Edition</title>
     <style>
         * {
             box-sizing: border-box;
@@ -12,7 +12,6 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* 🎨 BACKGROUND ESTETIK DINAMIS */
         body {
             background: radial-gradient(circle at center, #1b2735 0%, #090a0f 100%);
             color: #ffffff;
@@ -25,7 +24,6 @@
             user-select: none;
         }
 
-        /* 🏆 HEADER LOGO BRANDING */
         .brand-header {
             display: flex;
             align-items: center;
@@ -34,26 +32,31 @@
         }
 
         .brand-logo {
-            width: 60px;
-            height: 60px;
-            object-fit: contain;
-            filter: drop-shadow(0 4px 8px rgba(0,210,211,0.4));
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px;
+            background: rgba(0, 210, 211, 0.15);
+            border: 2px solid #00d2d3;
+            border-radius: 12px;
+            box-shadow: 0 0 12px rgba(0,210,211,0.3);
         }
 
         .brand-title h1 {
-            font-size: 22px;
+            font-size: 20px;
             color: #00d2d3;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        /* 👤 DUAL CHARACTER & PANEL STATISTIK */
         .game-panel {
             display: flex;
             align-items: center;
             justify-content: space-between;
             width: 100%;
-            max-width: 520px;
+            max-width: 500px;
             background: rgba(255, 255, 255, 0.07);
             backdrop-filter: blur(10px);
             padding: 12px 20px;
@@ -71,22 +74,15 @@
         }
 
         .char-avatar {
-            width: 55px;
-            height: 55px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             background: #222f3e;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 28px;
+            font-size: 26px;
             border: 2px solid #00d2d3;
-            overflow: hidden;
-        }
-
-        .char-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
         }
 
         .char-name {
@@ -104,45 +100,28 @@
 
         .stat-badge {
             background: rgba(0, 0, 0, 0.4);
-            padding: 5px 12px;
+            padding: 4px 12px;
             border-radius: 20px;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: bold;
             border: 1px solid rgba(255,255,255,0.1);
         }
 
-        /* 🎮 INDIKATOR MODE KONTROL */
-        .gamepad-status {
-            font-size: 11px;
-            padding: 4px 12px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            color: #c8d6e5;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-
-        .gamepad-status.active {
-            background: #2ed573;
-            color: white;
-        }
-
-        /* 🔲 ARENA BOARD GAME */
         .board {
             display: grid;
             gap: 10px;
             justify-content: center;
         }
 
-        .board.level-1 { grid-template-columns: repeat(4, 80px); }
-        .board.level-2 { grid-template-columns: repeat(4, 80px); }
-        .board.level-3 { grid-template-columns: repeat(6, 75px); }
+        .board.level-1 { grid-template-columns: repeat(4, 75px); }
+        .board.level-2 { grid-template-columns: repeat(4, 75px); }
+        .board.level-3 { grid-template-columns: repeat(6, 70px); }
 
         .card {
             width: 100%;
-            height: 80px;
+            height: 75px;
             background-color: #222f3e;
-            border-radius: 10px;
+            border-radius: 12px;
             cursor: pointer;
             overflow: hidden;
             display: flex;
@@ -158,44 +137,30 @@
             border: 2px solid #00d2d3;
         }
 
-        .card img, .card .enemy-icon {
+        .card-content {
             width: 100%;
             height: 100%;
-            object-fit: cover;
             display: none;
+            justify-content: center;
+            align-items: center;
+            font-size: 34px;
             pointer-events: none;
         }
 
-        .card .enemy-icon {
-            font-size: 38px;
-            background: #ff4757;
-            display: none;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Status Kartu */
         .card.flipped { border: 2px solid #00d2d3; }
-        .card.flipped img, .card.flipped .enemy-icon { display: flex; }
+        .card.flipped .card-content { display: flex; }
 
         .card.matched {
             border: 2px solid #2ed573;
             opacity: 0.7;
             cursor: default;
         }
-        .card.matched img { display: block; }
+        .card.matched .card-content { display: flex; }
 
         .card.joy-selected {
             border: 3px solid #ff9f43 !important;
             transform: scale(1.08);
             box-shadow: 0 0 15px #ff9f43;
-        }
-
-        /* 🎵 CONTROLS */
-        .control-btns {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
         }
 
         .btn {
@@ -207,32 +172,27 @@
             cursor: pointer;
             font-weight: bold;
             font-size: 13px;
+            margin-top: 15px;
         }
-        .btn:hover { background: #1dd1a1; }
     </style>
 </head>
 <body>
 
-    <!-- 🏆 HEADER LOGO BRANDING -->
     <div class="brand-header">
-        <!-- Logo default dari CDN internet -->
-        <img src="https://cdn-icons-png.flaticon.com/512/808/808439.png" alt="Logo" class="brand-logo">
+        <div class="brand-logo">🎮</div>
         <div class="brand-title">
             <h1>Game Development</h1>
             <p style="font-size: 11px; color: #8395a7;">Aesthetic Matching Project</p>
         </div>
     </div>
 
-    <!-- 🎮 STATUS KONTROL -->
-    <div id="gamepadStatus" class="gamepad-status">🖱️ Mode: Mouse / Touch Screen</div>
+    <div id="gamepadStatus" style="font-size: 11px; padding: 4px 12px; border-radius: 10px; background: rgba(255, 255, 255, 0.1); color: #c8d6e5; margin-bottom: 10px; font-weight: bold;">
+        🖱️ Mode: Mouse / Touch Screen
+    </div>
 
-    <!-- 👤 DUAL CHARACTER & STATS -->
     <div class="game-panel">
         <div class="char-box">
-            <div class="char-avatar">
-                <!-- Avatar Player dari CDN -->
-                <img src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png" alt="Player">
-            </div>
+            <div class="char-avatar">🤠</div>
             <span class="char-name">PLAYER</span>
         </div>
 
@@ -243,35 +203,18 @@
         </div>
 
         <div class="char-box">
-            <div class="char-avatar" style="border-color: #ff4757;">
-                <!-- Avatar Musuh dari CDN -->
-                <img src="https://cdn-icons-png.flaticon.com/512/1236/1236280.png" alt="Enemy">
-            </div>
+            <div class="char-avatar" style="border-color: #ff4757;">👾</div>
             <span class="char-name" style="color: #ff4757;">MUSUH</span>
         </div>
     </div>
 
-    <!-- 🔲 BOARD GAME -->
     <div class="board level-1" id="board"></div>
 
-    <div class="control-btns">
-        <button class="btn" onclick="toggleAudio()">🎵 Suara On/Off</button>
-    </div>
+    <button class="btn" onclick="toggleAudio()">🎵 Suara On/Off</button>
 
     <script>
-        // 1. DATA GAMBAR KARTU DARI ONLINE (Unsplash CDN)
-        const allImages = [
-            'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=150',
-            'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=150',
-            'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=150',
-            'https://images.unsplash.com/photo-1563089145-599997674d42?w=150',
-            'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=150',
-            'https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=150',
-            'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=150',
-            'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=150',
-            'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=150',
-            'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=150'
-        ];
+        // Simbol Estetik Generatif (Tanpa Butuh File Gambar)
+        const allItems = ['💎', '🚀', '🔥', '🎨', '🌟', '🔮', '🎧', '⚡', '🌙', '🍀', '🍕', '🔑'];
 
         let currentLevel = 1;
         let score = 0;
@@ -295,7 +238,6 @@
             3: { pairs: 10, hasEnemy: true, time: 60, gridClass: 'level-3', name: 'LEVEL 3: MASTER 🏆', cols: 6 }
         };
 
-        // 2. MUSIK & SFX
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         let isAudioMuted = false;
 
@@ -317,7 +259,6 @@
             alert(isAudioMuted ? "Suara Dimatikan 🔇" : "Suara Diaktifkan 🔊");
         }
 
-        // 3. JALANKAN LEVEL
         function startLevel(level) {
             clearInterval(timerInterval);
             board.innerHTML = '';
@@ -332,17 +273,17 @@
             levelText.innerText = config.name;
             board.className = `board ${config.gridClass}`;
 
-            let selectedImages = allImages.slice(0, config.pairs);
+            let selectedItems = allItems.slice(0, config.pairs);
             currentDeck = [];
 
-            selectedImages.forEach(img => {
-                currentDeck.push({ type: 'img', val: img });
-                currentDeck.push({ type: 'img', val: img });
+            selectedItems.forEach(item => {
+                currentDeck.push({ type: 'item', val: item });
+                currentDeck.push({ type: 'item', val: item });
             });
 
             if (config.hasEnemy) {
-                currentDeck.push({ type: 'enemy', val: 'ENEMY' });
-                currentDeck.push({ type: 'enemy', val: 'ENEMY' });
+                currentDeck.push({ type: 'enemy', val: '👾' });
+                currentDeck.push({ type: 'enemy', val: '👾' });
             }
 
             currentDeck.sort(() => Math.random() - 0.5);
@@ -352,18 +293,13 @@
                 card.classList.add('card');
                 card.dataset.type = item.type;
                 card.dataset.value = item.val;
-                card.dataset.index = index;
 
-                if (item.type === 'img') {
-                    const img = document.createElement('img');
-                    img.src = item.val;
-                    card.appendChild(img);
-                } else {
-                    const enemy = document.createElement('div');
-                    enemy.classList.add('enemy-icon');
-                    enemy.innerText = '👾';
-                    card.appendChild(enemy);
-                }
+                const content = document.createElement('div');
+                content.classList.add('card-content');
+                content.innerText = item.val;
+                if(item.type === 'enemy') content.style.background = '#ff4757';
+
+                card.appendChild(content);
 
                 card.onclick = function() {
                     joyIndex = -1; 
@@ -386,13 +322,8 @@
             }, 1000);
         }
 
-        // 4. BUKA KARTU
         function triggerCardFlip(card) {
-            if (!canClick || 
-                card.classList.contains('flipped') || 
-                card.classList.contains('matched')) {
-                return;
-            }
+            if (!canClick || card.classList.contains('flipped') || card.classList.contains('matched')) return;
 
             playSound(400, 'sine', 0.1);
             card.classList.add('flipped');
@@ -432,9 +363,9 @@
                 flippedCards = [];
                 matchedCount += 2;
 
-                const totalImageCards = currentDeck.filter(item => item.type === 'img').length;
+                const totalItemCards = currentDeck.filter(i => i.type === 'item').length;
 
-                if (matchedCount === totalImageCards) {
+                if (matchedCount === totalItemCards) {
                     clearInterval(timerInterval);
                     playSound(800, 'triangle', 0.4);
 
@@ -461,17 +392,13 @@
             }
         }
 
-        // 5. NAVIGASI JOYSTICK
         let lastAxisMove = 0;
 
         function updateJoystickHighlight() {
             const cards = document.querySelectorAll('.card');
             cards.forEach((c, idx) => {
-                if (idx === joyIndex) {
-                    c.classList.add('joy-selected');
-                } else {
-                    c.classList.remove('joy-selected');
-                }
+                if (idx === joyIndex) c.classList.add('joy-selected');
+                else c.classList.remove('joy-selected');
             });
         }
 
@@ -480,8 +407,7 @@
             let gp = gamepads[0];
 
             if (gp) {
-                gamepadStatus.innerText = `🕹️ Joystick Terhubung: ${gp.id.substring(0, 20)}...`;
-                gamepadStatus.classList.add('active');
+                gamepadStatus.innerText = `🕹️ Joystick Terhubung: ${gp.id.substring(0, 18)}...`;
 
                 const cols = levelConfig[currentLevel].cols;
                 const totalCards = currentDeck.length;
@@ -514,7 +440,6 @@
                 }
             } else {
                 gamepadStatus.innerText = "🖱️ Mode: Mouse / Touch Screen Active";
-                gamepadStatus.classList.remove('active');
             }
 
             requestAnimationFrame(pollGamepad);
