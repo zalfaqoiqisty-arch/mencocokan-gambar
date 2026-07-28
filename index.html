@@ -30,18 +30,24 @@
             overflow-x: hidden;
         }
 
-        /* 📌 HEADER MELEBAR */
+        /* 📌 HEADER TIGA LOGO (SMK, UZ, JURUSAN) */
         .brand-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
             background: rgba(255, 255, 255, 0.05);
-            padding: 12px 25px;
+            padding: 12px 20px;
             border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.12);
             margin-bottom: 20px;
             width: 100%;
             max-width: 900px;
+        }
+
+        .header-logos-left, .header-logos-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .brand-header img {
@@ -54,18 +60,18 @@
         .brand-title {
             text-align: center;
             flex-grow: 1;
-            padding: 0 15px;
+            padding: 0 10px;
         }
 
         .brand-title h1 {
-            font-size: 18px;
+            font-size: 16px;
             color: #00d2d3;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         .brand-title p {
-            font-size: 12px;
+            font-size: 11px;
             color: #8395a7;
         }
 
@@ -84,38 +90,6 @@
             margin-top: 10px;
         }
 
-        /* Tampilan Profil vs Musuh di Beranda */
-        .home-vs-box {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 25px;
-            margin: 20px 0;
-        }
-
-        .preview-avatar {
-            width: 75px;
-            height: 75px;
-            border-radius: 50%;
-            border: 3px solid #00d2d3;
-            overflow: hidden;
-            box-shadow: 0 0 15px rgba(0, 210, 211, 0.3);
-            background: #222f3e;
-        }
-
-        .preview-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .vs-badge {
-            font-size: 18px;
-            font-weight: 900;
-            color: #ff4757;
-            font-style: italic;
-        }
-
         .main-play-btn {
             padding: 14px 35px;
             font-size: 16px;
@@ -127,7 +101,7 @@
             border-radius: 50px;
             cursor: pointer;
             box-shadow: 0 8px 20px rgba(16, 172, 132, 0.4);
-            margin-top: 10px;
+            margin-top: 20px;
             transition: transform 0.2s;
         }
 
@@ -266,52 +240,36 @@
 </head>
 <body>
 
-    <!-- BRANDING HEADER -->
+    <!-- BRANDING HEADER: LOGO SMK + LOGO UZ DI KIRI, LOGO JURUSAN DI KANAN -->
     <div class="brand-header">
-        <img src="logoSmk.jpeg" alt="Logo SMK">
+        <div class="header-logos-left">
+            <img src="logoSmk.jpeg" alt="Logo SMK">
+            <img src="hkihhcgfk.jpeg" alt="Logo UZ Zalfa" onerror="this.onerror=null; this.src='hkihhcgfk.png';">
+        </div>
         
         <div class="brand-title">
             <h1>GAME MENCOCOKKAN GAMBAR</h1>
             <p>Aesthetic Matching Project</p>
         </div>
 
-        <img src="logojurusan.jpeg" alt="Logo Jurusan">
+        <div class="header-logos-right">
+            <img src="logojurusan.jpeg" alt="Logo Jurusan">
+        </div>
     </div>
 
     <!-- BERANDA -->
     <div id="home-screen">
-        <h2 style="font-size: 16px; color: #00d2d3;">TAMPILAN VS</h2>
-        
-        <!-- DISPLAY LOGO UZ & MOKO DI BERANDA -->
-        <div class="home-vs-box">
-            <div style="text-align:center;">
-                <div class="preview-avatar">
-                    <img src="hkihhcgfk.jpeg" alt="Logo Zalfa" onerror="this.onerror=null; this.src='hkihhcgfk.png';">
-                </div>
-                <span style="font-size: 12px; font-weight: bold; margin-top: 5px; display: block; color: #00d2d3;">SAYA</span>
-            </div>
-
-            <span class="vs-badge">VS</span>
-
-            <div style="text-align:center;">
-                <div class="preview-avatar" style="border-color: #ff4757;">
-                    <img src="ppm.jpeg" alt="Logo Moko" onerror="this.onerror=null; this.src='https://cdn-icons-png.flaticon.com/512/1216/1216597.png';">
-                </div>
-                <span style="font-size: 12px; font-weight: bold; margin-top: 5px; display: block; color: #ff4757;">MUSUH</span>
-            </div>
-        </div>
-
-        <p style="color: #c8d6e5; font-size: 13px; margin-bottom: 10px;">Temukan pasangan gambar yang cocok sebelum waktu habis!</p>
+        <p style="color: #c8d6e5; font-size: 14px; margin-bottom: 10px;">Temukan pasangan gambar yang cocok sebelum waktu habis!</p>
         <button class="main-play-btn" onclick="mulaiPermainan()">Mulai Permainan</button>
     </div>
 
     <!-- ARENA GAME -->
     <div id="game-screen">
         <div class="game-panel">
-            <!-- KARAKTER SAYA -->
+            <!-- KARAKTER SAYA (ICON AVATAR BIASA) -->
             <div class="char-box">
                 <div class="char-avatar">
-                    <img src="hkihhcgfk.jpeg" alt="Logo Zalfa" onerror="this.onerror=null; this.src='hkihhcgfk.png';">
+                    <img src="https://cdn-icons-png.flaticon.com/512/742/742751.png" alt="Pemain">
                 </div>
                 <span id="playerName" style="font-size: 11px; font-weight: bold; letter-spacing: 1px;">SAYA</span>
             </div>
@@ -323,10 +281,10 @@
                 <div class="stat-badge">🏆 Skor: <span id="score">0</span></div>
             </div>
 
-            <!-- KARAKTER MUSUH -->
+            <!-- KARAKTER MUSUH (ICON AVATAR MONSTER / MUSUH BIASA) -->
             <div class="char-box">
                 <div class="char-avatar" style="border-color:#ff4757;">
-                    <img src="ppm.jpeg" alt="Logo Moko" onerror="this.onerror=null; this.src='https://cdn-icons-png.flaticon.com/512/1216/1216597.png';">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1216/1216597.png" alt="Musuh">
                 </div>
                 <span style="font-size: 11px; font-weight: bold; color:#ff4757; letter-spacing: 1px;">MUSUH</span>
                 <span id="enemyProgress" style="font-size: 10px; color: #ff6b6b; font-weight: bold;">Status: 0%</span>
@@ -410,7 +368,8 @@
             'https://cdn-icons-png.flaticon.com/512/869/869869.png'
         ];
 
-        const enemyImageUrl = 'ppm.jpeg';
+        // Gambar jebakan musuh menggunakan icon monster game
+        const enemyImageUrl = 'https://cdn-icons-png.flaticon.com/512/1216/1216597.png';
 
         let currentLevel = 1;
         let score = 0;
@@ -479,9 +438,6 @@
 
                 const img = document.createElement('img');
                 img.src = item.url;
-                img.onerror = function() {
-                    if(item.type === 'enemy') this.src = 'https://cdn-icons-png.flaticon.com/512/1216/1216597.png';
-                };
 
                 card.appendChild(img);
                 card.onclick = () => flipCard(card);
