@@ -311,8 +311,8 @@
                 osc.type = 'triangle';
                 osc.frequency.setValueAtTime(notes[noteIndex], audioCtx.currentTime);
                 
-                // Volume BGM diturunkan sedikit (0.02) agar SFX lebih menonjol
-                noteGain.gain.setValueAtTime(0.02, audioCtx.currentTime);
+                // BGM dibuat lembut agar SFX mendominasi
+                noteGain.gain.setValueAtTime(0.015, audioCtx.currentTime);
                 noteGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.25);
                 
                 osc.connect(noteGain);
@@ -325,7 +325,7 @@
             }, 300);
         }
 
-        // 🚀 OTO-PEMUTARAN SUARA SAAT HALAMAN DIMUAT (AUTOPLAY HANDLER)
+        // 🚀 OTO-PEMUTARAN SUARA SAAT HALAMAN DIMUAT
         function initAutoAudio() {
             if (audioCtx.state === 'suspended') {
                 audioCtx.resume();
@@ -333,7 +333,6 @@
             startBGM();
         }
 
-        // Jalankan audio langsung saat halaman siap / pengguna berinteraksi pertama kali
         window.addEventListener('DOMContentLoaded', initAutoAudio);
         window.addEventListener('load', initAutoAudio);
         ['click', 'touchstart', 'keydown', 'mousemove'].forEach(evt => {
@@ -345,7 +344,7 @@
             }, { once: false });
         });
 
-        // 🔔 EFEK SUARA GAME (VOLUME DIKERASKAN)
+        // 🔔 EFEK SUARA GAME (SUPER HARD & LOUD VOLUME)
         function playSound(type) {
             if (audioCtx.state === 'suspended') {
                 audioCtx.resume();
@@ -359,52 +358,53 @@
             const now = audioCtx.currentTime;
 
             if (type === 'flip') {
-                // Suara Klik (Volume dinaikkan ke 0.5)
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(400, now);
-                osc.frequency.exponentialRampToValueAtTime(800, now + 0.08);
-                gain.gain.setValueAtTime(0.5, now);
+                // Suara Klik Kartu (Volume Maksimal 0.95 & Square Wave)
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(500, now);
+                osc.frequency.exponentialRampToValueAtTime(1200, now + 0.08);
+                gain.gain.setValueAtTime(0.95, now);
                 gain.gain.exponentialRampToValueAtTime(0.01, now + 0.08);
                 osc.start(now);
                 osc.stop(now + 0.08);
             } else if (type === 'match') {
-                // Suara Cocok (Volume dinaikkan ke 0.6)
+                // Suara Cocok / Benar (Volume Maksimal 1.0 & Nada Nyaring)
                 osc.type = 'triangle';
                 osc.frequency.setValueAtTime(523.25, now);
-                osc.frequency.setValueAtTime(659.25, now + 0.1);
-                osc.frequency.setValueAtTime(783.99, now + 0.2);
-                gain.gain.setValueAtTime(0.6, now);
-                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
+                osc.frequency.setValueAtTime(659.25, now + 0.08);
+                osc.frequency.setValueAtTime(783.99, now + 0.16);
+                osc.frequency.setValueAtTime(1046.50, now + 0.24);
+                gain.gain.setValueAtTime(1.0, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.4);
                 osc.start(now);
-                osc.stop(now + 0.35);
+                osc.stop(now + 0.4);
             } else if (type === 'wrong') {
-                // Suara Salah (Volume dinaikkan ke 0.5)
+                // Suara Salah (Volume Maksimal 0.95 & Sawtooth Keras)
                 osc.type = 'sawtooth';
-                osc.frequency.setValueAtTime(220, now);
-                osc.frequency.setValueAtTime(140, now + 0.15);
-                gain.gain.setValueAtTime(0.5, now);
+                osc.frequency.setValueAtTime(300, now);
+                osc.frequency.setValueAtTime(150, now + 0.12);
+                gain.gain.setValueAtTime(0.95, now);
                 gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
                 osc.start(now);
                 osc.stop(now + 0.3);
             } else if (type === 'win') {
-                // Suara Menang (Volume dinaikkan ke 0.6)
-                osc.type = 'sine';
+                // Suara Menang Level (Volume 1.0)
+                osc.type = 'square';
                 osc.frequency.setValueAtTime(523.25, now);
-                osc.frequency.setValueAtTime(659.25, now + 0.15);
-                osc.frequency.setValueAtTime(783.99, now + 0.30);
-                osc.frequency.setValueAtTime(1046.50, now + 0.45);
-                gain.gain.setValueAtTime(0.6, now);
+                osc.frequency.setValueAtTime(659.25, now + 0.12);
+                osc.frequency.setValueAtTime(783.99, now + 0.24);
+                osc.frequency.setValueAtTime(1046.50, now + 0.36);
+                gain.gain.setValueAtTime(1.0, now);
                 gain.gain.exponentialRampToValueAtTime(0.01, now + 0.7);
                 osc.start(now);
                 osc.stop(now + 0.7);
             } else if (type === 'lose') {
-                // Suara Kalah (Volume dinaikkan ke 0.6)
+                // Suara Kalah (Volume 1.0)
                 osc.type = 'sawtooth';
-                osc.frequency.setValueAtTime(300, now);
-                osc.frequency.setValueAtTime(250, now + 0.2);
-                osc.frequency.setValueAtTime(200, now + 0.4);
-                osc.frequency.setValueAtTime(150, now + 0.6);
-                gain.gain.setValueAtTime(0.6, now);
+                osc.frequency.setValueAtTime(400, now);
+                osc.frequency.setValueAtTime(300, now + 0.15);
+                osc.frequency.setValueAtTime(200, now + 0.3);
+                osc.frequency.setValueAtTime(100, now + 0.45);
+                gain.gain.setValueAtTime(1.0, now);
                 gain.gain.exponentialRampToValueAtTime(0.01, now + 0.8);
                 osc.start(now);
                 osc.stop(now + 0.8);
