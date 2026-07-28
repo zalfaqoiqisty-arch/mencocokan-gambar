@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Matching - Aesthetic SVG Edition</title>
+    <title>Game Development - Matching Project</title>
     <style>
         * {
             box-sizing: border-box;
@@ -24,6 +24,20 @@
             user-select: none;
         }
 
+        /* 🖼️ EMBLEM LOGO INSTANSI */
+        .emblem-container {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .emblem-img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        /* 🏆 HEADER LOGO BRANDING */
         .brand-header {
             display: flex;
             align-items: center;
@@ -32,31 +46,27 @@
         }
 
         .brand-logo {
-            width: 50px;
-            height: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 32px;
-            background: rgba(0, 210, 211, 0.15);
-            border: 2px solid #00d2d3;
+            width: 65px;
+            height: 65px;
+            object-fit: contain;
             border-radius: 12px;
-            box-shadow: 0 0 12px rgba(0,210,211,0.3);
+            filter: drop-shadow(0 4px 8px rgba(0,210,211,0.4));
         }
 
         .brand-title h1 {
-            font-size: 20px;
+            font-size: 22px;
             color: #00d2d3;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
+        /* 👤 DUAL CHARACTER & PANEL STATISTIK */
         .game-panel {
             display: flex;
             align-items: center;
             justify-content: space-between;
             width: 100%;
-            max-width: 500px;
+            max-width: 520px;
             background: rgba(255, 255, 255, 0.07);
             backdrop-filter: blur(10px);
             padding: 12px 20px;
@@ -74,15 +84,22 @@
         }
 
         .char-avatar {
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             background: #222f3e;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 26px;
+            font-size: 28px;
             border: 2px solid #00d2d3;
+            overflow: hidden;
+        }
+
+        .char-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .char-name {
@@ -100,9 +117,9 @@
 
         .stat-badge {
             background: rgba(0, 0, 0, 0.4);
-            padding: 4px 12px;
+            padding: 5px 12px;
             border-radius: 20px;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: bold;
             border: 1px solid rgba(255,255,255,0.1);
         }
@@ -113,15 +130,15 @@
             justify-content: center;
         }
 
-        .board.level-1 { grid-template-columns: repeat(4, 75px); }
-        .board.level-2 { grid-template-columns: repeat(4, 75px); }
-        .board.level-3 { grid-template-columns: repeat(6, 70px); }
+        .board.level-1 { grid-template-columns: repeat(4, 80px); }
+        .board.level-2 { grid-template-columns: repeat(4, 80px); }
+        .board.level-3 { grid-template-columns: repeat(6, 75px); }
 
         .card {
             width: 100%;
-            height: 75px;
+            height: 80px;
             background-color: #222f3e;
-            border-radius: 12px;
+            border-radius: 10px;
             cursor: pointer;
             overflow: hidden;
             display: flex;
@@ -137,31 +154,31 @@
             border: 2px solid #00d2d3;
         }
 
-        .card-content {
+        .card img, .card .enemy-icon {
             width: 100%;
             height: 100%;
+            object-fit: cover;
             display: none;
-            justify-content: center;
-            align-items: center;
-            font-size: 34px;
             pointer-events: none;
         }
 
+        .card .enemy-icon {
+            font-size: 38px;
+            background: #ff4757;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
         .card.flipped { border: 2px solid #00d2d3; }
-        .card.flipped .card-content { display: flex; }
+        .card.flipped img, .card.flipped .enemy-icon { display: flex; }
 
         .card.matched {
             border: 2px solid #2ed573;
             opacity: 0.7;
             cursor: default;
         }
-        .card.matched .card-content { display: flex; }
-
-        .card.joy-selected {
-            border: 3px solid #ff9f43 !important;
-            transform: scale(1.08);
-            box-shadow: 0 0 15px #ff9f43;
-        }
+        .card.matched img { display: block; }
 
         .btn {
             padding: 8px 16px;
@@ -178,8 +195,15 @@
 </head>
 <body>
 
+    <!-- 🏆 LOGO SEKOAH & RPL -->
+    <div class="emblem-container">
+        <img src="images/logo-sekolah.png" alt="SMKN 1 Sanden" class="emblem-img" onerror="this.style.display='none'">
+        <img src="images/logo-rpl.png" alt="RPL" class="emblem-img" onerror="this.style.display='none'">
+    </div>
+
+    <!-- 🏆 HEADER LOGO MOKO -->
     <div class="brand-header">
-        <div class="brand-logo">🎮</div>
+        <img src="images/logo-moko.png" alt="Logo Moko" class="brand-logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/808/808439.png'">
         <div class="brand-title">
             <h1>Game Development</h1>
             <p style="font-size: 11px; color: #8395a7;">Aesthetic Matching Project</p>
@@ -192,13 +216,15 @@
 
     <div class="game-panel">
         <div class="char-box">
-            <div class="char-avatar">🤠</div>
-            <span class="char-name">PLAYER</span>
+            <div class="char-avatar">
+                <img src="images/logo-zalfa.png" alt="Zalfa" onerror="this.style.display='none'; this.parentElement.innerText='🤠';">
+            </div>
+            <span class="char-name">ZALFA</span>
         </div>
 
         <div class="stats-center">
             <div id="levelText" style="font-size: 12px; color: #00d2d3; font-weight: bold;">LEVEL 1</div>
-            <div class="stat-badge">⏱️ Waktu: <span id="timer">40</span>s</div>
+            <div class="stat-badge">⏱️ Waktu: <span id="timer">60</span>s</div>
             <div class="stat-badge">🏆 Skor: <span id="score">0</span></div>
         </div>
 
@@ -213,29 +239,31 @@
     <button class="btn" onclick="toggleAudio()">🎵 Suara On/Off</button>
 
     <script>
-        // Simbol Estetik Generatif (Tanpa Butuh File Gambar)
-        const allItems = ['💎', '🚀', '🔥', '🎨', '🌟', '🔮', '🎧', '⚡', '🌙', '🍀', '🍕', '🔑'];
+        const allImages = [
+            'images/1.png', 'images/2.png', 'images/3.png', 'images/4.png',
+            'images/5.png', 'images/6.png', 'images/7.png', 'images/8.png',
+            'images/9.png', 'images/10.png', 'images/11.png', 'images/12.png'
+        ];
 
         let currentLevel = 1;
         let score = 0;
-        let timeLeft = 40;
+        let timeLeft = 60;
         let timerInterval = null;
         let flippedCards = [];
         let matchedCount = 0;
         let canClick = true;
         let currentDeck = [];
-        let joyIndex = -1;
 
         const timerEl = document.getElementById('timer');
         const scoreEl = document.getElementById('score');
         const board = document.getElementById('board');
         const levelText = document.getElementById('levelText');
-        const gamepadStatus = document.getElementById('gamepadStatus');
 
+        // Waktu diatur menjadi 60 detik (1 menit) untuk semua level
         const levelConfig = {
-            1: { pairs: 3, hasEnemy: false, time: 40, gridClass: 'level-1', name: 'LEVEL 1: MUDAH', cols: 4 },
-            2: { pairs: 5, hasEnemy: true,  time: 45, gridClass: 'level-2', name: 'LEVEL 2: AWAS MUSUH! 👾', cols: 4 },
-            3: { pairs: 10, hasEnemy: true, time: 60, gridClass: 'level-3', name: 'LEVEL 3: MASTER 🏆', cols: 6 }
+            1: { pairs: 3, hasEnemy: false, time: 60, gridClass: 'level-1', name: 'LEVEL 1: MUDAH' },
+            2: { pairs: 5, hasEnemy: true,  time: 60, gridClass: 'level-2', name: 'LEVEL 2: AWAS MUSUH! 👾' },
+            3: { pairs: 10, hasEnemy: true, time: 60, gridClass: 'level-3', name: 'LEVEL 3: MASTER 🏆' }
         };
 
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -265,7 +293,6 @@
             flippedCards = [];
             matchedCount = 0;
             canClick = true;
-            joyIndex = -1;
 
             const config = levelConfig[level];
             timeLeft = config.time;
@@ -273,17 +300,17 @@
             levelText.innerText = config.name;
             board.className = `board ${config.gridClass}`;
 
-            let selectedItems = allItems.slice(0, config.pairs);
+            let selectedImages = allImages.slice(0, config.pairs);
             currentDeck = [];
 
-            selectedItems.forEach(item => {
-                currentDeck.push({ type: 'item', val: item });
-                currentDeck.push({ type: 'item', val: item });
+            selectedImages.forEach(img => {
+                currentDeck.push({ type: 'img', val: img });
+                currentDeck.push({ type: 'img', val: img });
             });
 
             if (config.hasEnemy) {
-                currentDeck.push({ type: 'enemy', val: '👾' });
-                currentDeck.push({ type: 'enemy', val: '👾' });
+                currentDeck.push({ type: 'enemy', val: 'ENEMY' });
+                currentDeck.push({ type: 'enemy', val: 'ENEMY' });
             }
 
             currentDeck.sort(() => Math.random() - 0.5);
@@ -294,19 +321,18 @@
                 card.dataset.type = item.type;
                 card.dataset.value = item.val;
 
-                const content = document.createElement('div');
-                content.classList.add('card-content');
-                content.innerText = item.val;
-                if(item.type === 'enemy') content.style.background = '#ff4757';
+                if (item.type === 'img') {
+                    const img = document.createElement('img');
+                    img.src = item.val;
+                    card.appendChild(img);
+                } else {
+                    const enemy = document.createElement('div');
+                    enemy.classList.add('enemy-icon');
+                    enemy.innerText = '👾';
+                    card.appendChild(enemy);
+                }
 
-                card.appendChild(content);
-
-                card.onclick = function() {
-                    joyIndex = -1; 
-                    updateJoystickHighlight();
-                    triggerCardFlip(this);
-                };
-
+                card.onclick = function() { triggerCardFlip(this); };
                 board.appendChild(card);
             });
 
@@ -330,12 +356,12 @@
 
             if (card.dataset.type === 'enemy') {
                 playSound(120, 'sawtooth', 0.4);
-                score = Math.max(0, score - 25);
+                score = Math.max(0, score - 10); // Hukuman musuh dikurangi menjadi -10
                 scoreEl.innerText = score;
                 canClick = false;
 
                 setTimeout(() => {
-                    alert('👾 JEBAKAN MUSUH! Skor berkurang -25!');
+                    alert('👾 JEBAKAN MUSUH! Skor berkurang -10!');
                     card.classList.remove('flipped');
                     canClick = true;
                 }, 500);
@@ -357,15 +383,15 @@
                 card1.classList.add('matched');
                 card2.classList.add('matched');
                 
-                score += 20;
+                score += 10; // Penambahan skor dikurangi menjadi +10 (sebelumnya +20)
                 scoreEl.innerText = score;
                 
                 flippedCards = [];
                 matchedCount += 2;
 
-                const totalItemCards = currentDeck.filter(i => i.type === 'item').length;
+                const totalImageCards = currentDeck.filter(item => item.type === 'img').length;
 
-                if (matchedCount === totalItemCards) {
+                if (matchedCount === totalImageCards) {
                     clearInterval(timerInterval);
                     playSound(800, 'triangle', 0.4);
 
@@ -392,61 +418,7 @@
             }
         }
 
-        let lastAxisMove = 0;
-
-        function updateJoystickHighlight() {
-            const cards = document.querySelectorAll('.card');
-            cards.forEach((c, idx) => {
-                if (idx === joyIndex) c.classList.add('joy-selected');
-                else c.classList.remove('joy-selected');
-            });
-        }
-
-        function pollGamepad() {
-            const gamepads = navigator.getGamepads ? navigator.getGamepads() : [];
-            let gp = gamepads[0];
-
-            if (gp) {
-                gamepadStatus.innerText = `🕹️ Joystick Terhubung: ${gp.id.substring(0, 18)}...`;
-
-                const cols = levelConfig[currentLevel].cols;
-                const totalCards = currentDeck.length;
-                const now = Date.now();
-
-                if (now - lastAxisMove > 200) {
-                    let axisX = gp.axes[0] || (gp.buttons[14]?.pressed ? -1 : gp.buttons[15]?.pressed ? 1 : 0);
-                    let axisY = gp.axes[1] || (gp.buttons[12]?.pressed ? -1 : gp.buttons[13]?.pressed ? 1 : 0);
-
-                    if (axisX < -0.5 || axisX > 0.5 || axisY < -0.5 || axisY > 0.5) {
-                        if (joyIndex === -1) joyIndex = 0;
-                        
-                        if (axisX < -0.5 && joyIndex % cols !== 0) joyIndex--;
-                        else if (axisX > 0.5 && (joyIndex + 1) % cols !== 0 && joyIndex + 1 < totalCards) joyIndex++;
-                        else if (axisY < -0.5 && joyIndex - cols >= 0) joyIndex -= cols;
-                        else if (axisY > 0.5 && joyIndex + cols < totalCards) joyIndex += cols;
-
-                        lastAxisMove = now;
-                        updateJoystickHighlight();
-                    }
-                }
-
-                if (gp.buttons[0].pressed && joyIndex !== -1) {
-                    const cards = document.querySelectorAll('.card');
-                    if (cards[joyIndex] && canClick) {
-                        triggerCardFlip(cards[joyIndex]);
-                        canClick = false; 
-                        setTimeout(() => canClick = true, 300);
-                    }
-                }
-            } else {
-                gamepadStatus.innerText = "🖱️ Mode: Mouse / Touch Screen Active";
-            }
-
-            requestAnimationFrame(pollGamepad);
-        }
-
         startLevel(currentLevel);
-        requestAnimationFrame(pollGamepad);
     </script>
 </body>
 </html>
