@@ -30,7 +30,7 @@
             overflow-x: hidden;
         }
 
-        /* 📌 HEADER TIGA LOGO (SMK, UZ, JURUSAN) */
+        /* 📌 HEADER 4 LOGO BERDERET SESUAI KEBUTUHAN */
         .brand-header {
             display: flex;
             align-items: center;
@@ -101,7 +101,7 @@
             border-radius: 50px;
             cursor: pointer;
             box-shadow: 0 8px 20px rgba(16, 172, 132, 0.4);
-            margin-top: 20px;
+            margin-top: 15px;
             transition: transform 0.2s;
         }
 
@@ -240,11 +240,11 @@
 </head>
 <body>
 
-    <!-- BRANDING HEADER: LOGO SMK + LOGO UZ DI KIRI, LOGO JURUSAN DI KANAN -->
+    <!-- BRANDING HEADER: LOGO SMK & UZ DI KIRI | LOGO MOKO & JURUSAN DI KANAN -->
     <div class="brand-header">
         <div class="header-logos-left">
             <img src="logoSmk.jpeg" alt="Logo SMK">
-            <img src="hkihhcgfk.jpeg" alt="Logo UZ Zalfa" onerror="this.onerror=null; this.src='hkihhcgfk.png';">
+            <img src="hkihhcgfk.jpeg" alt="Logo UZ" onerror="this.onerror=null; this.src='hkihhcgfk.png';">
         </div>
         
         <div class="brand-title">
@@ -253,6 +253,7 @@
         </div>
 
         <div class="header-logos-right">
+            <img src="ppm.jpeg" alt="Logo MOKO" onerror="this.onerror=null; this.src='ppm.png';">
             <img src="logojurusan.jpeg" alt="Logo Jurusan">
         </div>
     </div>
@@ -266,7 +267,7 @@
     <!-- ARENA GAME -->
     <div id="game-screen">
         <div class="game-panel">
-            <!-- KARAKTER SAYA (ICON AVATAR BIASA) -->
+            <!-- KARAKTER SAYA -->
             <div class="char-box">
                 <div class="char-avatar">
                     <img src="https://cdn-icons-png.flaticon.com/512/742/742751.png" alt="Pemain">
@@ -281,7 +282,7 @@
                 <div class="stat-badge">🏆 Skor: <span id="score">0</span></div>
             </div>
 
-            <!-- KARAKTER MUSUH (ICON AVATAR MONSTER / MUSUH BIASA) -->
+            <!-- KARAKTER MUSUH -->
             <div class="char-box">
                 <div class="char-avatar" style="border-color:#ff4757;">
                     <img src="https://cdn-icons-png.flaticon.com/512/1216/1216597.png" alt="Musuh">
@@ -368,7 +369,6 @@
             'https://cdn-icons-png.flaticon.com/512/869/869869.png'
         ];
 
-        // Gambar jebakan musuh menggunakan icon monster game
         const enemyImageUrl = 'https://cdn-icons-png.flaticon.com/512/1216/1216597.png';
 
         let currentLevel = 1;
