@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- 📌 JUDUL UNTUK BROWSER & PREVIEW LINK WHATSAPP -->
+    <!-- 📌 JUDUL UNTUK BROWSER & PREVIEW LINK -->
     <title>GAME MENCOCOKKAN GAMBAR - Matching Project</title>
     <meta property="og:title" content="GAME MENCOCOKKAN GAMBAR - Matching Project">
     <meta property="og:description" content="Aesthetic Matching Project">
@@ -30,7 +30,7 @@
             overflow-x: hidden;
         }
 
-        /* 📌 HEADER MELEBAR KE POJOK KIRI DAN KANAN */
+        /* 📌 HEADER MELEBAR */
         .brand-header {
             display: flex;
             align-items: center;
@@ -81,7 +81,39 @@
             padding: 30px;
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 20px;
+            margin-top: 10px;
+        }
+
+        /* Tampilan Profil vs Musuh di Beranda */
+        .home-vs-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            margin: 20px 0;
+        }
+
+        .preview-avatar {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            border: 3px solid #00d2d3;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 210, 211, 0.3);
+            background: #222f3e;
+        }
+
+        .preview-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .vs-badge {
+            font-size: 18px;
+            font-weight: 900;
+            color: #ff4757;
+            font-style: italic;
         }
 
         .main-play-btn {
@@ -95,7 +127,7 @@
             border-radius: 50px;
             cursor: pointer;
             box-shadow: 0 8px 20px rgba(16, 172, 132, 0.4);
-            margin-top: 20px;
+            margin-top: 10px;
             transition: transform 0.2s;
         }
 
@@ -248,14 +280,35 @@
 
     <!-- BERANDA -->
     <div id="home-screen">
-        <p style="color: #c8d6e5; margin-bottom: 10px;">Temukan pasangan gambar yang cocok sebelum waktu habis!</p>
+        <h2 style="font-size: 16px; color: #00d2d3;">TAMPILAN VS</h2>
+        
+        <!-- DISPLAY LOGO UZ & MOKO DI BERANDA -->
+        <div class="home-vs-box">
+            <div style="text-align:center;">
+                <div class="preview-avatar">
+                    <img src="hkihhcgfk.jpeg" alt="Logo Zalfa" onerror="this.onerror=null; this.src='hkihhcgfk.png';">
+                </div>
+                <span style="font-size: 12px; font-weight: bold; margin-top: 5px; display: block; color: #00d2d3;">SAYA</span>
+            </div>
+
+            <span class="vs-badge">VS</span>
+
+            <div style="text-align:center;">
+                <div class="preview-avatar" style="border-color: #ff4757;">
+                    <img src="ppm.jpeg" alt="Logo Moko" onerror="this.onerror=null; this.src='https://cdn-icons-png.flaticon.com/512/1216/1216597.png';">
+                </div>
+                <span style="font-size: 12px; font-weight: bold; margin-top: 5px; display: block; color: #ff4757;">MUSUH</span>
+            </div>
+        </div>
+
+        <p style="color: #c8d6e5; font-size: 13px; margin-bottom: 10px;">Temukan pasangan gambar yang cocok sebelum waktu habis!</p>
         <button class="main-play-btn" onclick="mulaiPermainan()">Mulai Permainan</button>
     </div>
 
     <!-- ARENA GAME -->
     <div id="game-screen">
         <div class="game-panel">
-            <!-- KARAKTER SAYA (MENGGUNAKAN LOGO hkihhcgfk) -->
+            <!-- KARAKTER SAYA -->
             <div class="char-box">
                 <div class="char-avatar">
                     <img src="hkihhcgfk.jpeg" alt="Logo Zalfa" onerror="this.onerror=null; this.src='hkihhcgfk.png';">
@@ -270,7 +323,7 @@
                 <div class="stat-badge">🏆 Skor: <span id="score">0</span></div>
             </div>
 
-            <!-- KARAKTER MUSUH (PAKAI LOGO ppm.jpeg / MOKO) -->
+            <!-- KARAKTER MUSUH -->
             <div class="char-box">
                 <div class="char-avatar" style="border-color:#ff4757;">
                     <img src="ppm.jpeg" alt="Logo Moko" onerror="this.onerror=null; this.src='https://cdn-icons-png.flaticon.com/512/1216/1216597.png';">
@@ -284,7 +337,6 @@
     </div>
 
     <script>
-        // 🔊 AUDIO GENERATOR (Web Audio API)
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
         function playSound(type) {
@@ -358,7 +410,6 @@
             'https://cdn-icons-png.flaticon.com/512/869/869869.png'
         ];
 
-        // Gambar jebakan musuh menggunakan ppm.jpeg (Logo Moko)
         const enemyImageUrl = 'ppm.jpeg';
 
         let currentLevel = 1;
@@ -437,7 +488,6 @@
                 board.appendChild(card);
             });
 
-            // Timer Utama 70 Detik
             timerInterval = setInterval(() => {
                 timeLeft--;
                 document.getElementById('timer').innerText = timeLeft;
@@ -450,7 +500,6 @@
                 }
             }, 1000);
 
-            // Progress Musuh
             if (config.hasEnemy) {
                 enemyInterval = setInterval(() => {
                     enemyProgressPercent += 2;
