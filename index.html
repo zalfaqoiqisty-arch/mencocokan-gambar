@@ -136,7 +136,7 @@
             flex-direction: column;
             align-items: center;
             width: 100%;
-            max-width: 550px;
+            max-width: 600px;
         }
 
         .game-panel {
@@ -165,7 +165,7 @@
             font-weight: bold;
         }
 
-        /* 🔲 PAPAN KARTU */
+        /* 🔲 PAPAN KARTU (LAYOUT TINGKAT LEVEL) */
         .board {
             display: grid;
             gap: 10px;
@@ -177,6 +177,8 @@
         .board.level-1 { grid-template-columns: repeat(3, 85px); }
         .board.level-2 { grid-template-columns: repeat(4, 75px); }
         .board.level-3 { grid-template-columns: repeat(4, 70px); }
+        .board.level-4 { grid-template-columns: repeat(4, 65px); }
+        .board.level-5 { grid-template-columns: repeat(5, 60px); }
 
         .card {
             height: 80px;
@@ -190,6 +192,10 @@
             border: 2px solid rgba(255,255,255,0.1);
             position: relative;
             transition: transform 0.2s;
+        }
+
+        .board.level-5 .card {
+            height: 70px;
         }
 
         .card:hover {
@@ -231,7 +237,7 @@
 </head>
 <body>
 
-    <!-- BRANDING HEADER: LOGO KIRI (SMK & UZ) | LOGO & TULISAN TENGAH | LOGO KANAN (MOKO & JURUSAN) -->
+    <!-- BRANDING HEADER: LOGO KIRI | LOGO & TULISAN TENGAH | LOGO KANAN (TERMASUK LOGO67) -->
     <div class="brand-header">
         <div class="header-logos-left">
             <img src="logoSmk.jpeg" alt="Logo SMK">
@@ -247,9 +253,11 @@
             </div>
         </div>
 
+        <!-- DI KANAN: LOGO MOKO, LOGO JURUSAN, DAN LOGO67 -->
         <div class="header-logos-right">
             <img src="ppm.jpeg" alt="Logo MOKO" onerror="this.onerror=null; this.src='ppm.png';">
             <img src="logojurusan.jpeg" alt="Logo Jurusan">
+            <img src="logo67.jpeg" alt="Logo Onesandvoscho" onerror="this.onerror=null; this.src='logo67.png';">
         </div>
     </div>
 
@@ -277,17 +285,25 @@
         // 🔊 SYSTEM SOUND EFFECT & BGM (Web Audio API)
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         let isBgmPlaying = false;
+        let bgmInterval = null;
 
-        // 🎵 MUSIK BACKGROUND (BGM Chiptune Loop)
+        // 🎵 MUSIK BACKGROUND (BGM Chiptune Loop Auto-Start)
         function startBGM() {
             if (isBgmPlaying) return;
             isBgmPlaying = true;
 
-            const notes = [261.63, 329.63, 392.00, 523.25, 392.00, 329.63]; // Melodi ceria
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+
+            const notes = [261.63, 329.63, 392.00, 523.25, 392.00, 329.63]; 
             let noteIndex = 0;
 
-            setInterval(() => {
-                if (!isBgmPlaying || audioCtx.state === 'suspended') return;
+            bgmInterval = setInterval(() => {
+                if (!isBgmPlaying) return;
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
                 
                 const osc = audioCtx.createOscillator();
                 const noteGain = audioCtx.createGain();
@@ -295,7 +311,7 @@
                 osc.type = 'triangle';
                 osc.frequency.setValueAtTime(notes[noteIndex], audioCtx.currentTime);
                 
-                noteGain.gain.setValueAtTime(0.04, audioCtx.currentTime); // Volume lembut
+                noteGain.gain.setValueAtTime(0.04, audioCtx.currentTime);
                 noteGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.25);
                 
                 osc.connect(noteGain);
@@ -308,7 +324,27 @@
             }, 300);
         }
 
-        // 🔔 EFEK SUARA GAME (Flip, Match, Wrong, Win, Lose)
+        // 🚀 OTO-PEMUTARAN SUARA SAAT HALAMAN DIMUAT (AUTOPLAY HANDLER)
+        function initAutoAudio() {
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            startBGM();
+        }
+
+        // Jalankan audio langsung saat halaman siap / pengguna berinteraksi pertama kali
+        window.addEventListener('DOMContentLoaded', initAutoAudio);
+        window.addEventListener('load', initAutoAudio);
+        ['click', 'touchstart', 'keydown', 'mousemove'].forEach(evt => {
+            window.addEventListener(evt, () => {
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                startBGM();
+            }, { once: false });
+        });
+
+        // 🔔 EFEK SUARA GAME
         function playSound(type) {
             if (audioCtx.state === 'suspended') {
                 audioCtx.resume();
@@ -369,6 +405,7 @@
             }
         }
 
+        // Koleksi Ikon Gambar
         const onlineImages = [
             'https://cdn-icons-png.flaticon.com/512/742/742751.png',
             'https://cdn-icons-png.flaticon.com/512/3081/3081840.png',
@@ -377,7 +414,9 @@
             'https://cdn-icons-png.flaticon.com/512/2909/2909762.png',
             'https://cdn-icons-png.flaticon.com/512/1046/1046784.png',
             'https://cdn-icons-png.flaticon.com/512/2972/2972531.png',
-            'https://cdn-icons-png.flaticon.com/512/869/869869.png'
+            'https://cdn-icons-png.flaticon.com/512/869/869869.png',
+            'https://cdn-icons-png.flaticon.com/512/1152/1152755.png',
+            'https://cdn-icons-png.flaticon.com/512/3135/3135715.png'
         ];
 
         let currentLevel = 1;
@@ -388,15 +427,18 @@
         let matchedCount = 0;
         let canClick = true;
 
+        // Configuration 5 LEVEL
         const levelConfig = {
             1: { pairs: 3, gridClass: 'level-1', name: 'LEVEL 1' },
             2: { pairs: 4, gridClass: 'level-2', name: 'LEVEL 2' },
-            3: { pairs: 6, gridClass: 'level-3', name: 'LEVEL 3: MASTER' }
+            3: { pairs: 6, gridClass: 'level-3', name: 'LEVEL 3' },
+            4: { pairs: 8, gridClass: 'level-4', name: 'LEVEL 4: EXPERT' },
+            5: { pairs: 10, gridClass: 'level-5', name: 'LEVEL 5: ULTIMATE' }
         };
 
         function mulaiPermainan() {
             playSound('flip');
-            startBGM(); // Memulai musik latar
+            startBGM(); 
             document.getElementById('home-screen').style.display = 'none';
             document.getElementById('game-screen').style.display = 'flex';
             currentLevel = 1;
@@ -480,12 +522,12 @@
                         clearInterval(timerInterval);
                         playSound('win');
                         setTimeout(() => {
-                            if (currentLevel < 3) {
-                                alert(`🎉 LEVEL SELESAI!\nSkor: ${score}\nLanjut ke Level ${currentLevel + 1}`);
+                            if (currentLevel < 5) {
+                                alert(`🎉 LEVEL ${currentLevel} SELESAI!\nSkor: ${score}\nLanjut ke Level ${currentLevel + 1}`);
                                 currentLevel++;
                                 startLevel(currentLevel);
                             } else {
-                                alert(`🏆 SELAMAT! ANDA MENANG SEMUA LEVEL!\nSkor Akhir: ${score}`);
+                                alert(`🏆 SELAMAT! ANDA BERHASIL MENYELESAIKAN SEMUA LEVEL (1 - 5)!\nSkor Akhir: ${score}`);
                                 location.reload();
                             }
                         }, 300);
