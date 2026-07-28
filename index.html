@@ -139,7 +139,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 26px;
             border: 2px solid #00d2d3;
             overflow: hidden;
         }
@@ -235,7 +234,7 @@
 </head>
 <body>
 
-    <!-- BRANDING HEADER: LOGO SMK DI POJOK KIRI, LOGO JURUSAN DI POJOK KANAN -->
+    <!-- BRANDING HEADER -->
     <div class="brand-header">
         <img src="logoSmk.jpeg" alt="Logo SMK">
         
@@ -256,9 +255,11 @@
     <!-- ARENA GAME -->
     <div id="game-screen">
         <div class="game-panel">
-            <!-- KARAKTER SAYA -->
+            <!-- KARAKTER SAYA (MENGGUNAKAN LOGO hkihhcgfk) -->
             <div class="char-box">
-                <div class="char-avatar">🤠</div>
+                <div class="char-avatar">
+                    <img src="hkihhcgfk.jpeg" alt="Logo Zalfa" onerror="this.onerror=null; this.src='hkihhcgfk.png';">
+                </div>
                 <span id="playerName" style="font-size: 11px; font-weight: bold; letter-spacing: 1px;">SAYA</span>
             </div>
 
@@ -269,9 +270,11 @@
                 <div class="stat-badge">🏆 Skor: <span id="score">0</span></div>
             </div>
 
-            <!-- KARAKTER MUSUH & PROGRESS MUSUH -->
+            <!-- KARAKTER MUSUH (PAKAI LOGO ppm.jpeg / MOKO) -->
             <div class="char-box">
-                <div class="char-avatar" style="border-color:#ff4757;">👾</div>
+                <div class="char-avatar" style="border-color:#ff4757;">
+                    <img src="ppm.jpeg" alt="Logo Moko" onerror="this.onerror=null; this.src='https://cdn-icons-png.flaticon.com/512/1216/1216597.png';">
+                </div>
                 <span style="font-size: 11px; font-weight: bold; color:#ff4757; letter-spacing: 1px;">MUSUH</span>
                 <span id="enemyProgress" style="font-size: 10px; color: #ff6b6b; font-weight: bold;">Status: 0%</span>
             </div>
@@ -281,7 +284,7 @@
     </div>
 
     <script>
-        // 🔊 AUDIO GENERATOR (Pake Web Audio API agar tanpa file mp3 luar)
+        // 🔊 AUDIO GENERATOR (Web Audio API)
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
         function playSound(type) {
@@ -297,7 +300,6 @@
             const now = audioCtx.currentTime;
 
             if (type === 'flip') {
-                // Suara Klik/Flip Kartu
                 osc.type = 'sine';
                 osc.frequency.setValueAtTime(400, now);
                 osc.frequency.exponentialRampToValueAtTime(800, now + 0.08);
@@ -306,17 +308,15 @@
                 osc.start(now);
                 osc.stop(now + 0.08);
             } else if (type === 'match') {
-                // Suara Kartu Cocok
                 osc.type = 'triangle';
-                osc.frequency.setValueAtTime(523.25, now); // C5
-                osc.frequency.setValueAtTime(659.25, now + 0.1); // E5
-                osc.frequency.setValueAtTime(783.99, now + 0.2); // G5
+                osc.frequency.setValueAtTime(523.25, now);
+                osc.frequency.setValueAtTime(659.25, now + 0.1);
+                osc.frequency.setValueAtTime(783.99, now + 0.2);
                 gain.gain.setValueAtTime(0.3, now);
                 gain.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
                 osc.start(now);
                 osc.stop(now + 0.35);
             } else if (type === 'wrong') {
-                // Suara Kartu Salah / Musuh
                 osc.type = 'sawtooth';
                 osc.frequency.setValueAtTime(200, now);
                 osc.frequency.setValueAtTime(120, now + 0.15);
@@ -325,7 +325,6 @@
                 osc.start(now);
                 osc.stop(now + 0.3);
             } else if (type === 'win') {
-                // Suara Menang
                 osc.type = 'sine';
                 osc.frequency.setValueAtTime(523.25, now);
                 osc.frequency.setValueAtTime(659.25, now + 0.15);
@@ -336,7 +335,6 @@
                 osc.start(now);
                 osc.stop(now + 0.7);
             } else if (type === 'lose') {
-                // Suara Kalah
                 osc.type = 'sawtooth';
                 osc.frequency.setValueAtTime(300, now);
                 osc.frequency.setValueAtTime(250, now + 0.2);
@@ -360,7 +358,8 @@
             'https://cdn-icons-png.flaticon.com/512/869/869869.png'
         ];
 
-        const enemyImageUrl = 'https://cdn-icons-png.flaticon.com/512/1216/1216597.png';
+        // Gambar jebakan musuh menggunakan ppm.jpeg (Logo Moko)
+        const enemyImageUrl = 'ppm.jpeg';
 
         let currentLevel = 1;
         let score = 0;
@@ -429,6 +428,9 @@
 
                 const img = document.createElement('img');
                 img.src = item.url;
+                img.onerror = function() {
+                    if(item.type === 'enemy') this.src = 'https://cdn-icons-png.flaticon.com/512/1216/1216597.png';
+                };
 
                 card.appendChild(img);
                 card.onclick = () => flipCard(card);
