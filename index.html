@@ -25,12 +25,12 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            padding: 20px 20px 80px 20px; /* Padding bawah ditambah agar tidak tertutup panel audio */
+            padding: 20px 20px 90px 20px;
             user-select: none;
             overflow-x: hidden;
         }
 
-        /* 📌 HEADER LOGO BERDERET (LOGOGAME & TEKS DI TENGAH) */
+        /* 📌 HEADER LOGO BERDERET */
         .brand-header {
             display: flex;
             align-items: center;
@@ -55,9 +55,10 @@
             height: 45px;
             object-fit: contain;
             border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            padding: 2px;
         }
 
-        /* LOGO GAME + TULISAN DI TENGAH HEADER */
         .center-logo {
             display: flex;
             flex-direction: column;
@@ -105,7 +106,7 @@
         }
 
         .home-main-logo {
-            width: 180px;
+            width: 150px;
             height: auto;
             margin-bottom: 15px;
             filter: drop-shadow(0 8px 15px rgba(0,0,0,0.5));
@@ -136,13 +137,13 @@
             flex-direction: column;
             align-items: center;
             width: 100%;
-            max-width: 600px;
+            max-width: 650px;
         }
 
         .game-panel {
             display: flex;
             align-items: center;
-            justify-content: space-around;
+            justify-content: space-between;
             width: 100%;
             background: rgba(255, 255, 255, 0.07);
             padding: 15px 25px;
@@ -165,52 +166,49 @@
             font-weight: bold;
         }
 
-        /* 🔲 PAPAN KARTU (LAYOUT TINGKAT LEVEL) */
+        /* 🔲 PAPAN KARTU RESPONSIF */
         .board {
             display: grid;
-            gap: 10px;
+            gap: 12px;
             justify-content: center;
             margin-bottom: 15px;
             width: 100%;
         }
 
-        .board.level-1 { grid-template-columns: repeat(3, 85px); }
-        .board.level-2 { grid-template-columns: repeat(4, 75px); }
-        .board.level-3 { grid-template-columns: repeat(4, 70px); }
-        .board.level-4 { grid-template-columns: repeat(4, 65px); }
-        .board.level-5 { grid-template-columns: repeat(5, 60px); }
+        .board.level-1 { grid-template-columns: repeat(3, minmax(75px, 95px)); }
+        .board.level-2 { grid-template-columns: repeat(4, minmax(70px, 85px)); }
+        .board.level-3 { grid-template-columns: repeat(4, minmax(65px, 80px)); }
+        .board.level-4 { grid-template-columns: repeat(4, minmax(60px, 75px)); }
+        .board.level-5 { grid-template-columns: repeat(5, minmax(55px, 70px)); }
 
         .card {
-            height: 80px;
+            aspect-ratio: 1;
             background: #222f3e;
-            border-radius: 10px;
+            border-radius: 12px;
             cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
             border: 2px solid rgba(255,255,255,0.1);
             position: relative;
-            transition: transform 0.2s;
-        }
-
-        .board.level-5 .card {
-            height: 70px;
+            transition: transform 0.2s, background 0.2s, border-color 0.2s;
         }
 
         .card:hover {
             transform: scale(1.05);
+            border-color: rgba(0, 210, 211, 0.5);
         }
 
         .card::before {
             content: "❓";
-            font-size: 22px;
+            font-size: 24px;
             opacity: 0.6;
         }
 
         .card img {
-            width: 75%;
-            height: 75%;
+            width: 80%;
+            height: 80%;
             object-fit: contain;
             display: none;
         }
@@ -230,11 +228,67 @@
 
         .card.matched {
             border-color: #2ed573;
-            opacity: 0.6;
+            opacity: 0.65;
             cursor: default;
         }
 
-        /* 🎛️ PANEL PENGATURAN AUDIO (BOGOH / STICKY FOOTER) */
+        /* 🏆 MODAL SELESAI / GAME OVER */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(9, 10, 15, 0.85);
+            backdrop-filter: blur(8px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal-content {
+            background: rgba(34, 47, 62, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 35px;
+            border-radius: 24px;
+            text-align: center;
+            max-width: 420px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+
+        .modal-content h2 {
+            font-size: 26px;
+            color: #1dd1a1;
+            margin-bottom: 12px;
+        }
+
+        .modal-content p {
+            font-size: 15px;
+            color: #c8d6e5;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .modal-btn {
+            padding: 12px 28px;
+            font-size: 15px;
+            font-weight: bold;
+            color: #fff;
+            background: linear-gradient(135deg, #00d2d3 0%, #01a3a4 100%);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(0, 210, 211, 0.4);
+            transition: transform 0.2s;
+        }
+
+        .modal-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* 🎛️ PANEL PENGATURAN AUDIO */
         .audio-settings-bar {
             position: fixed;
             bottom: 10px;
@@ -242,7 +296,7 @@
             transform: translateX(-50%);
             width: 90%;
             max-width: 600px;
-            background: rgba(15, 23, 42, 0.9);
+            background: rgba(15, 23, 42, 0.95);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 50px;
@@ -264,14 +318,10 @@
             color: #00d2d3;
         }
 
-        .audio-control-group label {
-            white-space: nowrap;
-        }
-
         .audio-slider {
             -webkit-appearance: none;
             appearance: none;
-            width: 80px;
+            width: 75px;
             height: 5px;
             background: rgba(255, 255, 255, 0.2);
             border-radius: 5px;
@@ -311,12 +361,12 @@
     <!-- BRANDING HEADER: LOGO KIRI | LOGO & TULISAN TENGAH | LOGO KANAN -->
     <div class="brand-header">
         <div class="header-logos-left">
-            <img src="logoSmk.jpeg" alt="Logo SMK">
-            <img src="hkihhcgfk.jpeg" alt="Logo UZ" onerror="this.onerror=null; this.src='hkihhcgfk.png';">
+            <img src="logoSmk.jpeg" alt="Logo SMK" onerror="this.onerror=null; this.src='https://placehold.co/45x45/1e293b/00d2d3?text=SMK';">
+            <img src="hkihhcgfk.jpeg" alt="Logo UZ" onerror="this.onerror=null; this.src='https://placehold.co/45x45/1e293b/00d2d3?text=UZ';">
         </div>
         
         <div class="center-logo">
-            <img src="logogame.png" alt="Match Picture Logo">
+            <img src="logogame.png" alt="Match Picture Logo" onerror="this.onerror=null; this.src='https://placehold.co/100x50/1e293b/00d2d3?text=GAME';">
             <div class="brand-title">
                 <h1>GAME MENCOCOKKAN GAMBAR</h1>
                 <p>Aesthetic Matching</p>
@@ -324,16 +374,16 @@
         </div>
 
         <div class="header-logos-right">
-            <img src="ppm.jpeg" alt="Logo MOKO" onerror="this.onerror=null; this.src='ppm.png';">
-            <img src="logojurusan.jpeg" alt="Logo Jurusan">
-            <img src="logo67.jpeg" alt="Logo Onesandvoscho" onerror="this.onerror=null; this.src='logo67.png';">
+            <img src="ppm.jpeg" alt="Logo MOKO" onerror="this.onerror=null; this.src='https://placehold.co/45x45/1e293b/00d2d3?text=PPM';">
+            <img src="logojurusan.jpeg" alt="Logo Jurusan" onerror="this.onerror=null; this.src='https://placehold.co/45x45/1e293b/00d2d3?text=JR';">
+            <img src="logo67.jpeg" alt="Logo Onesandvoscho" onerror="this.onerror=null; this.src='https://placehold.co/45x45/1e293b/00d2d3?text=67';">
         </div>
     </div>
 
     <!-- BERANDA -->
     <div id="home-screen">
-        <img src="logogame.png" alt="Match Picture Logo" class="home-main-logo">
-        <p style="color: #c8d6e5; font-size: 14px; margin-bottom: 10px;">Temukan pasangan gambar yang cocok sebelum waktu habis!</p>
+        <img src="logogame.png" alt="Match Picture Logo" class="home-main-logo" onerror="this.onerror=null; this.src='https://placehold.co/150x150/1e293b/00d2d3?text=MATCH';">
+        <p style="color: #c8d6e5; font-size: 14px; margin-bottom: 10px;">Temukan pasangan gambar yang cocok sebelum waktu habis di setiap levelnya!</p>
         <button class="main-play-btn" onclick="mulaiPermainan()">Mulai Permainan</button>
     </div>
 
@@ -350,7 +400,16 @@
         <div class="board level-1" id="board"></div>
     </div>
 
-    <!-- 🎛️ PANEL PENGATURAN EFEK SUARA DI BAGIAN BAWAH -->
+    <!-- MODAL POPUP SELESAI / GAME OVER -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <h2 id="modalTitle">Level Selesai!</h2>
+            <p id="modalDesc">Hebat! Kamu berhasil menyelesaikan tantangan ini.</p>
+            <button class="modal-btn" id="modalActionBtn" onclick="lanjutkanAksi()">Lanjut Level</button>
+        </div>
+    </div>
+
+    <!-- 🎛️ PANEL PENGATURAN EFEK SUARA -->
     <div class="audio-settings-bar">
         <div class="audio-control-group">
             <label for="sfxVolume">🔔 SFX:</label>
@@ -368,12 +427,28 @@
     </div>
 
     <script>
-        // 🔊 SYSTEM SOUND EFFECT & BGM (Web Audio API)
+        // 📌 PENGATURAN DATA GAMBAR (Sangat mudah diganti / ditambah asset gambarnya di sini)
+        const assetPool = [
+            "gambar1.jpeg", "gambar2.jpeg", "gambar3.jpeg", "gambar4.jpeg",
+            "gambar5.jpeg", "gambar6.jpeg", "gambar7.jpeg", "gambar8.jpeg",
+            "gambar9.jpeg", "gambar10.jpeg", "gambar11.jpeg", "gambar12.jpeg",
+            "gambar13.jpeg", "gambar14.jpeg", "gambar15.jpeg"
+        ];
+
+        // 🎮 STATE GAME
+        let currentLevel = 1;
+        let score = 0;
+        let timeLeft = 70;
+        let timerInterval = null;
+        let flippedCards = [];
+        let matchedPairs = 0;
+        let totalPairsNeeded = 0;
+        let isProcessing = false;
+
+        // 🔊 AUDIO SYSTEM (Web Audio API)
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         let isBgmPlaying = false;
         let bgmInterval = null;
-
-        // VARIABLE VOLUME CONTROL
         let sfxVolumeGain = 1.0;
         let bgmVolumeGain = 0.02;
         let isMuted = false;
@@ -381,10 +456,8 @@
         function updateAudioSettings() {
             const sfxInput = parseFloat(document.getElementById('sfxVolume').value);
             const bgmInput = parseFloat(document.getElementById('bgmVolume').value);
-
             sfxVolumeGain = sfxInput;
             bgmVolumeGain = bgmInput;
-
             document.getElementById('sfxVal').innerText = Math.round(sfxInput * 100) + '%';
             document.getElementById('bgmVal').innerText = Math.round((bgmInput / 0.1) * 100) + '%';
         }
@@ -401,24 +474,72 @@
             }
         }
 
-        // 🎵 MUSIK BACKGROUND (BGM Chiptune Loop)
+        function playSound(type) {
+            if (isMuted || sfxVolumeGain <= 0) return;
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            const now = audioCtx.currentTime;
+
+            if (type === 'flip') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(400, now);
+                osc.frequency.exponentialRampToValueAtTime(600, now + 0.1);
+                gain.gain.setValueAtTime(0.15 * sfxVolumeGain, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
+                osc.start(now);
+                osc.stop(now + 0.1);
+            } else if (type === 'match') {
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(523.25, now); // C5
+                osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
+                osc.frequency.setValueAtTime(783.99, now + 0.16); // G5
+                gain.gain.setValueAtTime(0.2 * sfxVolumeGain, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+                osc.start(now);
+                osc.stop(now + 0.3);
+            } else if (type === 'wrong') {
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(220, now);
+                osc.frequency.setValueAtTime(150, now + 0.1);
+                gain.gain.setValueAtTime(0.2 * sfxVolumeGain, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+                osc.start(now);
+                osc.stop(now + 0.25);
+            } else if (type === 'win') {
+                osc.type = 'sine';
+                [523.25, 659.25, 783.99, 1046.50].forEach((freq, idx) => {
+                    setTimeout(() => {
+                        if (isMuted || sfxVolumeGain <= 0) return;
+                        const o = audioCtx.createOscillator();
+                        const g = audioCtx.createGain();
+                        o.connect(g);
+                        g.connect(audioCtx.destination);
+                        o.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                        g.gain.setValueAtTime(0.2 * sfxVolumeGain, audioCtx.currentTime);
+                        g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.2);
+                        o.start();
+                        o.stop(audioCtx.currentTime + 0.2);
+                    }, idx * 100);
+                });
+            }
+        }
+
         function startBGM() {
             if (isBgmPlaying) return;
             isBgmPlaying = true;
-
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
+            if (audioCtx.state === 'suspended') audioCtx.resume();
 
             const notes = [261.63, 329.63, 392.00, 523.25, 392.00, 329.63]; 
             let noteIndex = 0;
 
             bgmInterval = setInterval(() => {
                 if (!isBgmPlaying) return;
-                if (audioCtx.state === 'suspended') {
-                    audioCtx.resume();
-                }
-                
+                if (audioCtx.state === 'suspended') audioCtx.resume();
                 if (isMuted || bgmVolumeGain <= 0) return;
 
                 const osc = audioCtx.createOscillator();
@@ -440,226 +561,134 @@
             }, 300);
         }
 
-        function initAutoAudio() {
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
-            startBGM();
-        }
-
-        window.addEventListener('DOMContentLoaded', initAutoAudio);
-        window.addEventListener('load', initAutoAudio);
-        ['click', 'touchstart', 'keydown', 'mousemove'].forEach(evt => {
-            window.addEventListener(evt, () => {
-                if (audioCtx.state === 'suspended') {
-                    audioCtx.resume();
-                }
-                startBGM();
-            }, { once: false });
-        });
-
-        // 🔔 EFEK SUARA GAME
-        function playSound(type) {
-            if (isMuted || sfxVolumeGain <= 0) return;
-
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
-            
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-
-            const now = audioCtx.currentTime;
-
-            if (type === 'flip') {
-                osc.type = 'square';
-                osc.frequency.setValueAtTime(500, now);
-                osc.frequency.exponentialRampToValueAtTime(1200, now + 0.08);
-                gain.gain.setValueAtTime(0.95 * sfxVolumeGain, now);
-                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.08);
-                osc.start(now);
-                osc.stop(now + 0.08);
-            } else if (type === 'match') {
-                osc.type = 'triangle';
-                osc.frequency.setValueAtTime(523.25, now);
-                osc.frequency.setValueAtTime(659.25, now + 0.08);
-                osc.frequency.setValueAtTime(783.99, now + 0.16);
-                osc.frequency.setValueAtTime(1046.50, now + 0.24);
-                gain.gain.setValueAtTime(1.0 * sfxVolumeGain, now);
-                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.4);
-                osc.start(now);
-                osc.stop(now + 0.4);
-            } else if (type === 'wrong') {
-                osc.type = 'sawtooth';
-                osc.frequency.setValueAtTime(300, now);
-                osc.frequency.setValueAtTime(150, now + 0.12);
-                gain.gain.setValueAtTime(0.95 * sfxVolumeGain, now);
-                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
-                osc.start(now);
-                osc.stop(now + 0.3);
-            } else if (type === 'win') {
-                osc.type = 'square';
-                osc.frequency.setValueAtTime(523.25, now);
-                osc.frequency.setValueAtTime(659.25, now + 0.12);
-                osc.frequency.setValueAtTime(783.99, now + 0.24);
-                osc.frequency.setValueAtTime(1046.50, now + 0.36);
-                gain.gain.setValueAtTime(1.0 * sfxVolumeGain, now);
-                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.7);
-                osc.start(now);
-                osc.stop(now + 0.7);
-            } else if (type === 'lose') {
-                osc.type = 'sawtooth';
-                osc.frequency.setValueAtTime(400, now);
-                osc.frequency.setValueAtTime(300, now + 0.15);
-                osc.frequency.setValueAtTime(200, now + 0.3);
-                osc.frequency.setValueAtTime(100, now + 0.45);
-                gain.gain.setValueAtTime(1.0 * sfxVolumeGain, now);
-                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.8);
-                osc.start(now);
-                osc.stop(now + 0.8);
-            }
-        }
-
-        // Koleksi Ikon Gambar
-        const onlineImages = [
-            'https://cdn-icons-png.flaticon.com/512/742/742751.png',
-            'https://cdn-icons-png.flaticon.com/512/3081/3081840.png',
-            'https://cdn-icons-png.flaticon.com/512/616/616408.png',
-            'https://cdn-icons-png.flaticon.com/512/414/414004.png',
-            'https://cdn-icons-png.flaticon.com/512/2909/2909762.png',
-            'https://cdn-icons-png.flaticon.com/512/1046/1046784.png',
-            'https://cdn-icons-png.flaticon.com/512/2972/2972531.png',
-            'https://cdn-icons-png.flaticon.com/512/869/869869.png',
-            'https://cdn-icons-png.flaticon.com/512/1152/1152755.png',
-            'https://cdn-icons-png.flaticon.com/512/3135/3135715.png'
-        ];
-
-        let currentLevel = 1;
-        let score = 0;
-        let timeLeft = 70;
-        let timerInterval = null;
-        let flippedCards = [];
-        let matchedCount = 0;
-        let canClick = true;
-
-        // Configuration 5 LEVEL
-        const levelConfig = {
-            1: { pairs: 3, gridClass: 'level-1', name: 'LEVEL 1' },
-            2: { pairs: 4, gridClass: 'level-2', name: 'LEVEL 2' },
-            3: { pairs: 6, gridClass: 'level-3', name: 'LEVEL 3' },
-            4: { pairs: 8, gridClass: 'level-4', name: 'LEVEL 4: EXPERT' },
-            5: { pairs: 10, gridClass: 'level-5', name: 'LEVEL 5: ULTIMATE' }
-        };
-
+        // 🚀 ALUR PERMAINAN
         function mulaiPermainan() {
-            playSound('flip');
-            startBGM(); 
             document.getElementById('home-screen').style.display = 'none';
             document.getElementById('game-screen').style.display = 'flex';
-            currentLevel = 1;
-            score = 0;
-            document.getElementById('score').innerText = score;
-            startLevel(currentLevel);
+            startBGM();
+            loadLevel(currentLevel);
         }
 
-        function startLevel(level) {
-            clearInterval(timerInterval);
-            const board = document.getElementById('board');
-            board.innerHTML = '';
+        function loadLevel(level) {
+            currentLevel = level;
+            matchedPairs = 0;
             flippedCards = [];
-            matchedCount = 0;
-            canClick = true;
+            isProcessing = false;
 
-            const config = levelConfig[level];
-            timeLeft = 70;
+            document.getElementById('levelText').innerText = `LEVEL ${level}`;
+            
+            // Konfigurasi waktu dan jumlah pasangan tiap level
+            let pairsCount = 3;
+            if (level === 1) { pairsCount = 3; timeLeft = 70; }
+            else if (level === 2) { pairsCount = 6; timeLeft = 60; }
+            else if (level === 3) { pairsCount = 8; timeLeft = 55; }
+            else if (level === 4) { pairsCount = 10; timeLeft = 50; }
+            else if (level === 5) { pairsCount = 12; timeLeft = 45; }
+
+            totalPairsNeeded = pairsCount;
             document.getElementById('timer').innerText = timeLeft;
-            document.getElementById('levelText').innerText = config.name;
-            board.className = `board ${config.gridClass}`;
 
-            let deck = [];
-            let selectedImages = onlineImages.slice(0, config.pairs);
-
-            selectedImages.forEach((imgUrl, idx) => {
-                deck.push({ type: 'img', url: imgUrl, id: idx });
-                deck.push({ type: 'img', url: imgUrl, id: idx });
-            });
-
+            // Ambil gambar dari assetPool sejumlah pairsCount
+            let selectedAssets = assetPool.slice(0, pairsCount);
+            let deck = [...selectedAssets, ...selectedAssets];
             deck.sort(() => Math.random() - 0.5);
 
-            deck.forEach(item => {
+            const board = document.getElementById('board');
+            board.className = `board level-${level}`;
+            board.innerHTML = '';
+
+            deck.forEach((imgSrc, index) => {
                 const card = document.createElement('div');
-                card.classList.add('card');
-                card.dataset.id = item.id;
+                card.className = 'card';
+                card.dataset.image = imgSrc;
 
                 const img = document.createElement('img');
-                img.src = item.url;
+                img.src = imgSrc;
+                img.alt = "Card Image";
+                img.onerror = function() {
+                    this.src = `https://placehold.co/100x100/1e293b/00d2d3?text=IMG`;
+                };
 
                 card.appendChild(img);
-                card.onclick = () => flipCard(card);
+                card.addEventListener('click', () => flipCard(card));
                 board.appendChild(card);
             });
 
+            clearInterval(timerInterval);
             timerInterval = setInterval(() => {
                 timeLeft--;
                 document.getElementById('timer').innerText = timeLeft;
                 if (timeLeft <= 0) {
                     clearInterval(timerInterval);
-                    playSound('lose');
-                    alert('⏳ Waktu Habis! Mengulang level...');
-                    startLevel(currentLevel);
+                    showModal("Waktu Habis!", "Sayang sekali waktu kamu habis. Coba ulangi level ini ya!", "Ulangi Level", () => loadLevel(currentLevel));
                 }
             }, 1000);
         }
 
         function flipCard(card) {
-            if (!canClick || card.classList.contains('flipped') || card.classList.contains('matched')) return;
+            if (isProcessing) return;
+            if (card.classList.contains('flipped') || card.classList.contains('matched')) return;
 
             playSound('flip');
             card.classList.add('flipped');
             flippedCards.push(card);
 
             if (flippedCards.length === 2) {
-                canClick = false;
+                isProcessing = true;
                 const [card1, card2] = flippedCards;
 
-                if (card1.dataset.id === card2.dataset.id) {
+                if (card1.dataset.image === card2.dataset.image) {
                     playSound('match');
                     card1.classList.add('matched');
                     card2.classList.add('matched');
-                    score += 10;
+                    matchedPairs++;
+                    score += 15;
                     document.getElementById('score').innerText = score;
                     flippedCards = [];
-                    matchedCount += 2;
-                    canClick = true;
+                    isProcessing = false;
 
-                    const totalImages = levelConfig[currentLevel].pairs * 2;
-                    if (matchedCount === totalImages) {
+                    if (matchedPairs === totalPairsNeeded) {
                         clearInterval(timerInterval);
                         playSound('win');
-                        setTimeout(() => {
-                            if (currentLevel < 5) {
-                                alert(`🎉 LEVEL ${currentLevel} SELESAI!\nSkor: ${score}\nLanjut ke Level ${currentLevel + 1}`);
-                                currentLevel++;
-                                startLevel(currentLevel);
-                            } else {
-                                alert(`🏆 SELAMAT! ANDA BERHASIL MENYELESAIKAN SEMUA LEVEL (1 - 5)!\nSkor Akhir: ${score}`);
-                                location.reload();
-                            }
-                        }, 300);
+                        if (currentLevel < 5) {
+                            showModal("Level Selesai! 🎉", `Hebat! Kamu menuntaskan Level ${currentLevel} dengan baik.`, "Lanjut Level", () => loadLevel(currentLevel + 1));
+                        } else {
+                            showModal("Tamat & Menang! 🏆", `Luar biasa! Kamu telah menamatkan seluruh level dengan total skor ${score}.`, "Main Lagi", () => {
+                                currentLevel = 1;
+                                score = 0;
+                                document.getElementById('score').innerText = score;
+                                loadLevel(1);
+                            });
+                        }
                     }
                 } else {
+                    playSound('wrong');
                     setTimeout(() => {
-                        playSound('wrong');
                         card1.classList.remove('flipped');
                         card2.classList.remove('flipped');
                         flippedCards = [];
-                        canClick = true;
-                    }, 600);
+                        isProcessing = false;
+                    }, 700);
                 }
             }
+        }
+
+        let currentModalCallback = null;
+        function showModal(title, desc, btnText, callback) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalDesc').innerText = desc;
+            document.getElementById('modalActionBtn').innerText = btnText;
+            document.getElementById('modalOverlay').style.display = 'flex';
+            currentModalCallback = callback;
+        }
+
+        function lanjutkanAksi() {
+            document.getElementById('modalOverlay').style.display = 'none';
+            if (currentModalCallback) currentModalCallback();
         }
     </script>
 </body>
 </html>
+```eof
+
+Your slide deck on **Match Picture Game Project** is ready! Feel free to take a look and let me know if you'd like to make any edits.
