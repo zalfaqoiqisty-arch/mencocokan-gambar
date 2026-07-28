@@ -25,34 +25,35 @@
             overflow-x: hidden;
         }
 
-        /* BRANDING HEADER */
+        /* BRANDING HEADER - Tiga Kolom Seimbang */
         .brand-header {
             display: flex;
             align-items: center;
-            gap: 12px;
+            justify-content: space-between;
             background: rgba(255, 255, 255, 0.05);
             padding: 10px 20px;
             border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.12);
             margin-bottom: 15px;
+            width: 100%;
+            max-width: 500px; /* Lebar header disesuaikan */
         }
 
-        /* CONTAINER LOGO SEKOLAH & JURUSAN */
-        .brand-logos {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .brand-logos img {
+        .brand-header img {
             width: 38px;
             height: 38px;
             object-fit: contain;
             border-radius: 6px;
         }
 
+        .brand-title {
+            text-align: center;
+            flex-grow: 1;
+            padding: 0 10px;
+        }
+
         .brand-title h1 {
-            font-size: 16px;
+            font-size: 15px;
             color: #00d2d3;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -216,17 +217,19 @@
 </head>
 <body>
 
-    <!-- BRANDING HEADER DENGAN LOGO SEKOLAH & JURUSAN -->
+    <!-- BRANDING HEADER: LOGO KIRI, JUDUL TENGAH, LOGO KANAN -->
     <div class="brand-header">
-        <div class="brand-logos">
-            <img src="logoSmk.jpeg" alt="Logo SMK">
-            <img src="logojurusan.jpeg" alt="Logo Jurusan">
-        </div>
+        <!-- Logo SMK (Kiri) -->
+        <img src="logoSmk.jpeg" alt="Logo SMK">
+        
+        <!-- Judul (Tengah) -->
         <div class="brand-title">
-            <!-- JUDUL SUDAH DIGANTI -->
             <h1>GAME MENCOCOKKAN GAMBAR</h1>
             <p>Aesthetic Matching Project</p>
         </div>
+
+        <!-- Logo Jurusan (Kanan) -->
+        <img src="logojurusan.jpeg" alt="Logo Jurusan">
     </div>
 
     <!-- BERANDA -->
